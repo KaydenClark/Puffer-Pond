@@ -43,6 +43,7 @@ Rare visitors can be shown immediately for deterministic visual inspection:
 
 - `http://127.0.0.1:5173/?visitor=hummingbird`
 - `http://127.0.0.1:5173/?visitor=dogs`
+- `http://127.0.0.1:5173/?visitor=ducks`
 
 ## Test And Build
 
@@ -76,8 +77,9 @@ npm.cmd run build
 Capture the approved desktop and phone viewports with the local server running:
 
 ```powershell
-npx.cmd playwright screenshot --viewport-size="1536,1024" --wait-for-timeout=2500 "http://127.0.0.1:5173/?visitor=hummingbird" "docs/desktop.png"
-npx.cmd playwright screenshot --browser=chromium --viewport-size="390,844" --wait-for-timeout=2500 "http://127.0.0.1:5173/?visitor=dogs" "docs/mobile.png"
+npx.cmd --yes --package playwright playwright screenshot --browser=chromium --viewport-size="1536,1024" --wait-for-timeout=10000 "http://127.0.0.1:5173/?visitor=ducks" "docs/desktop.png"
+npx.cmd --yes --package playwright playwright screenshot --browser=chromium --viewport-size="390,844" --wait-for-timeout=10000 "http://127.0.0.1:5173/?visitor=ducks" "docs/mobile.png"
+npx.cmd --yes --package playwright playwright screenshot --browser=chromium --viewport-size="1100,460" --wait-for-timeout=8000 "http://127.0.0.1:5173/?visitor=dogs" "docs/odd-window.png"
 ```
 
 Inspect `docs/concept-desktop.png`, `docs/desktop.png`, and `docs/mobile.png` together. Check waterline discipline, full-viewport fit, title/control legibility, touch targets, wildlife layering, palette, and cropping.
@@ -89,14 +91,14 @@ Profile only after a real phone shows frame drops. Preserve the asset-led illust
 ### Claims To Test
 
 - five distinct puffer movement profiles remain below the waterline;
-- hummingbird delays remain 25-45 seconds and dog delays remain 55-95 seconds;
+- hummingbird delays remain 25-45 seconds, dog delays remain 55-95 seconds, and duck landings wait 65-100 seconds;
 - rare events alternate so neither visitor is starved;
 - the viewport never scrolls horizontally or vertically;
 - sound, night mode, and ripple interactions remain usable by pointer and keyboard.
 
 ### Evaluation Design
 
-Use a 1536x1024 desktop viewport and a 390x844 phone viewport. Force one rare visitor per capture. Use the normal unforced URL for a five-minute watch test when tuning pacing.
+Use a 1536x1024 desktop viewport and a 390x844 phone viewport. Force one visitor per capture, and include an 1100x460 dog capture when changing shoreline positioning. Use the normal unforced URL for a five-minute watch test when tuning pacing.
 
 ### Workbench Evaluation Commands
 

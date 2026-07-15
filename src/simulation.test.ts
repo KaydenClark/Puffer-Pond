@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { createPufferFamily, getVisitorDelay, pickNextVisitor } from './simulation'
+import { createPufferFamily, getDuckDelay, getVisitorDelay, pickNextVisitor } from './simulation'
 
 describe('ambient pond scheduling', () => {
   it('keeps each rare visitor inside its intended timing window', () => {
@@ -14,6 +14,11 @@ describe('ambient pond scheduling', () => {
     expect(pickNextVisitor(null, () => 0.75)).toBe('dogs')
     expect(pickNextVisitor('hummingbird', () => 0)).toBe('dogs')
     expect(pickNextVisitor('dogs', () => 1)).toBe('hummingbird')
+  })
+
+  it('keeps duck landings intermittent', () => {
+    expect(getDuckDelay(() => 0)).toBe(65_000)
+    expect(getDuckDelay(() => 1)).toBe(100_000)
   })
 
   it('creates a five-member family with distinct movement profiles', () => {

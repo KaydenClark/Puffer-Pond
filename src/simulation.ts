@@ -1,4 +1,4 @@
-export type VisitorKind = 'hummingbird' | 'dogs'
+export type RareVisitorKind = 'hummingbird' | 'dogs'
 
 export interface PufferProfile {
   id: string
@@ -10,21 +10,33 @@ export interface PufferProfile {
   route: 'wide' | 'loop' | 'log' | 'grass' | 'deep'
 }
 
-const VISITOR_WINDOWS: Record<VisitorKind, readonly [number, number]> = {
+const VISITOR_WINDOWS: Record<RareVisitorKind, readonly [number, number]> = {
   hummingbird: [25_000, 45_000],
   dogs: [55_000, 95_000],
 }
 
-export function getVisitorDelay(kind: VisitorKind, random: () => number = Math.random): number {
-  const [minimum, maximum] = VISITOR_WINDOWS[kind]
+const DUCK_WAIT_WINDOW: readonly [number, number] = [65_000, 100_000]
+
+function sampleDelay(
+  [minimum, maximum]: readonly [number, number],
+  random: () => number,
+): number {
   const sample = Math.min(1, Math.max(0, random()))
   return Math.round(minimum + (maximum - minimum) * sample)
 }
 
+export function getVisitorDelay(kind: RareVisitorKind, random: () => number = Math.random): number {
+  return sampleDelay(VISITOR_WINDOWS[kind], random)
+}
+
+export function getDuckDelay(random: () => number = Math.random): number {
+  return sampleDelay(DUCK_WAIT_WINDOW, random)
+}
+
 export function pickNextVisitor(
-  previous: VisitorKind | null,
+  previous: RareVisitorKind | null,
   random: () => number = Math.random,
-): VisitorKind {
+): RareVisitorKind {
   if (previous === 'hummingbird') return 'dogs'
   if (previous === 'dogs') return 'hummingbird'
   return random() < 0.5 ? 'hummingbird' : 'dogs'

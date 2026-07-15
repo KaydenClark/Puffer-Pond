@@ -157,33 +157,33 @@ button {
   pointer-events: none;
 }
 
-.bird {
+.duck-visit {
   position: absolute;
-  z-index: 4;
-  width: clamp(54px, 7vw, 108px);
-  height: auto;
-  filter: drop-shadow(0 4px 4px rgba(45, 70, 40, 0.16));
+  z-index: 7;
+  right: 18%;
+  bottom: 43%;
+  width: min(30vw, 42vh, 420px);
+  aspect-ratio: 1.8;
+  animation: duck-visit 18s ease-in-out both;
   will-change: transform;
 }
 
-.bird-1 {
-  top: 12%;
-  left: 18%;
-  animation: bird-one 19s ease-in-out -5s infinite;
+.duck {
+  position: absolute;
+  width: 72%;
+  height: auto;
+  filter: drop-shadow(0 5px 5px rgba(41, 72, 43, 0.2));
 }
 
-.bird-2 {
-  top: 18%;
-  right: 19%;
-  width: clamp(46px, 6vw, 94px);
-  animation: bird-two 23s ease-in-out -14s infinite;
+.duck-one {
+  left: 0;
+  bottom: 4%;
 }
 
-.bird-3 {
-  top: 8%;
-  left: 48%;
-  width: clamp(38px, 5vw, 76px);
-  animation: bird-three 27s ease-in-out -9s infinite;
+.duck-two {
+  right: -2%;
+  bottom: -10%;
+  width: 58%;
 }
 
 .hummingbird {
@@ -199,9 +199,9 @@ button {
 .dogs {
   position: absolute;
   z-index: 6;
-  top: 19%;
+  bottom: 47%;
   right: 2%;
-  width: clamp(190px, 27vw, 430px);
+  width: min(27vw, 42vh, 430px);
   filter: drop-shadow(0 8px 6px rgba(58, 69, 34, 0.22));
   transform-origin: 45% 78%;
   animation: dogs-visit 16s ease-in-out both;
@@ -316,25 +316,14 @@ button {
   to { transform: scale(var(--scale)) translateY(3px) rotate(1.2deg); }
 }
 
-@keyframes bird-one {
-  0%, 100% { transform: translate(-28vw, 3vh) rotate(-5deg) scaleX(1); }
-  24% { transform: translate(20vw, 6vh) rotate(3deg) scaleX(1); }
-  37%, 49% { transform: translate(30vw, -1vh) rotate(-8deg) scaleX(0.78); }
-  72% { transform: translate(5vw, 21vh) rotate(4deg) scaleX(-1); }
-}
-
-@keyframes bird-two {
-  0%, 100% { transform: translate(26vw, 1vh) rotate(3deg) scaleX(-1); }
-  28% { transform: translate(-16vw, 10vh) rotate(-4deg) scaleX(-1); }
-  41%, 54% { transform: translate(-23vw, 18vh) rotate(8deg) scale(0.75) scaleX(-1); }
-  78% { transform: translate(3vw, 2vh) rotate(-3deg) scaleX(1); }
-}
-
-@keyframes bird-three {
-  0%, 100% { transform: translate(-6vw, -12vh) rotate(-4deg); }
-  30% { transform: translate(31vw, 11vh) rotate(7deg); }
-  43%, 58% { transform: translate(35vw, 21vh) rotate(-7deg) scale(0.74); }
-  81% { transform: translate(-22vw, 5vh) rotate(-2deg) scaleX(-1); }
+@keyframes duck-visit {
+  0% { opacity: 0; transform: translate(48vw, -34vh) scale(0.66); }
+  16% { opacity: 1; transform: translate(24vw, -22vh) scale(0.78) rotate(-2deg); }
+  38% { opacity: 1; transform: translate(5vw, -7vh) scale(0.94) rotate(2deg); }
+  50%, 78% { opacity: 1; transform: translate(0, 0) scale(1) rotate(0deg); }
+  65% { opacity: 1; transform: translate(-1vw, 0.7vh) scale(1) rotate(-1deg); }
+  88% { opacity: 1; transform: translate(-13vw, -9vh) scale(0.9) rotate(-2deg); }
+  100% { opacity: 0; transform: translate(-78vw, -30vh) scale(0.7) rotate(-4deg); }
 }
 
 @keyframes hummingbird-visit {
@@ -350,7 +339,7 @@ button {
   0% { opacity: 0; transform: translateX(38vw) rotate(-1deg); }
   18% { opacity: 1; transform: translateX(3vw) rotate(-1deg); }
   34% { transform: translateX(0) rotate(0deg); }
-  42%, 66% { transform: translateX(0) translateY(2.2vh) rotate(3deg); }
+  42%, 66% { transform: translateX(0) rotate(3deg); }
   74% { transform: translateX(0) rotate(0deg); }
   86% { opacity: 1; transform: translateX(8vw) rotate(-1deg); }
   100% { opacity: 0; transform: translateX(42vw) rotate(-2deg); }
@@ -424,10 +413,8 @@ button {
   .route-log { --dx: 5vw; --dy: 3vh; }
   .route-deep { --dx: 8vw; --dy: 5vh; }
 
-  .bird-1 { left: 9%; }
-  .bird-2 { right: 8%; }
-  .bird-3 { left: 45%; }
-  .dogs { top: 25%; right: -12%; width: clamp(190px, 66vw, 300px); }
+  .duck-visit { right: 4%; bottom: 43%; width: min(64vw, 32vh, 300px); }
+  .dogs { right: -12%; width: min(66vw, 36vh, 300px); }
   .hummingbird { top: 25%; left: -4%; width: clamp(74px, 28vw, 118px); }
 
   .pond-note {
@@ -447,9 +434,13 @@ button {
     animation-iteration-count: 1 !important;
   }
 
-  .bird-2,
-  .bird-3,
   .bubbles {
     display: none;
+  }
+
+  .duck-visit {
+    animation: none !important;
+    opacity: 1;
+    transform: none;
   }
 }

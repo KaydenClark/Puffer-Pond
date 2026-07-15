@@ -4,9 +4,9 @@
 
 **Shipping state:** Complete ambient-scene MVP live at `https://kaydenclark.github.io/Puffer-Pond/`.
 
-**Health:** Tests and production build are green; desktop and 390x844 visual checks pass.
+**Health:** Tests and production build are green; desktop, 390x844, reduced-motion, and 1100x460 odd-window visual checks pass.
 
-**Current focus:** Let the owner watch the live scene and choose whether any optional behavior deserves the next slice.
+**Current focus:** Let the owner watch the quieter duck pacing and choose whether any optional behavior deserves the next slice.
 
 **Blockers:** None.
 
@@ -20,6 +20,7 @@
 | T-002 | Real-phone performance profile | `specs/ambient-pond.md` | ready | P1 | 5-minute watch test on one real phone; record FPS/thermal observations | spec evidence |
 | T-003 | Installable home-screen PWA | `specs/ambient-pond.md` | ready | P2 | install prompt or manual install; offline reload on phone | blueprint, runbook, README, spec |
 | T-004 | Additional puffer behavior variety | `specs/ambient-pond.md` | ready | P2 | visible investigate/hide/feed states without crowding; regression tests | spec and taskboard |
+| T-005 | Responsive shoreline visitor polish | `specs/ambient-pond.md` | done | P1 | scheduling test, build, odd-window desktop and 390x844 screenshots | spec and taskboard |
 
 ## Owner Decisions
 

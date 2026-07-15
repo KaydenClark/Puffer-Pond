@@ -1,6 +1,6 @@
 # Puffer Pond
 
-Puffer Pond is a responsive, full-screen living illustration: a family of pea puffers explores grass and driftwood for snails while birds, a green hummingbird, and two thirsty dogs visit the water above.
+Puffer Pond is a responsive, full-screen living illustration: a family of pea puffers explores grass and driftwood for snails while ducks land on the surface and a green hummingbird and two thirsty dogs visit the shore.
 
 **[Open Puffer Pond](https://kaydenclark.github.io/Puffer-Pond/)**
 

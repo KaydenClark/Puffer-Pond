@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type CSSProperties, type PointerEvent } from 'react'
-import { createPufferFamily, getVisitorDelay, pickNextVisitor, type VisitorKind } from './simulation'
+import { createPufferFamily, getDuckDelay, getVisitorDelay, pickNextVisitor, type RareVisitorKind } from './simulation'
 import './styles.css'
 
 const puffers = createPufferFamily()
@@ -35,17 +35,17 @@ function readNightPreference(): boolean {
   return window.localStorage.getItem('puffer-pond-night') === 'true'
 }
 
-function useRareVisitor(): VisitorKind | null {
+function useRareVisitor(): RareVisitorKind | null {
   const forced = new URLSearchParams(window.location.search).get('visitor')
   const forcedVisitor = forced === 'hummingbird' || forced === 'dogs' ? forced : null
-  const [visitor, setVisitor] = useState<VisitorKind | null>(forcedVisitor)
+  const [visitor, setVisitor] = useState<RareVisitorKind | null>(forcedVisitor)
 
   useEffect(() => {
     let active = true
     let waitTimer: number | undefined
     let visitTimer: number | undefined
 
-    const queue = (previous: VisitorKind | null) => {
+    const queue = (previous: RareVisitorKind | null) => {
       const next = pickNextVisitor(previous)
       waitTimer = window.setTimeout(() => {
         if (!active) return
@@ -77,6 +77,47 @@ function useRareVisitor(): VisitorKind | null {
   }, [forcedVisitor])
 
   return visitor
+}
+
+function useDuckVisit(): boolean {
+  const forced = new URLSearchParams(window.location.search).get('visitor') === 'ducks'
+  const [visiting, setVisiting] = useState(forced)
+
+  useEffect(() => {
+    let active = true
+    let waitTimer: number | undefined
+    let visitTimer: number | undefined
+
+    const queue = () => {
+      waitTimer = window.setTimeout(() => {
+        if (!active) return
+        setVisiting(true)
+        visitTimer = window.setTimeout(() => {
+          if (!active) return
+          setVisiting(false)
+          queue()
+        }, 18_000)
+      }, getDuckDelay())
+    }
+
+    if (forced) {
+      visitTimer = window.setTimeout(() => {
+        if (!active) return
+        setVisiting(false)
+        queue()
+      }, 18_000)
+    } else {
+      queue()
+    }
+
+    return () => {
+      active = false
+      window.clearTimeout(waitTimer)
+      window.clearTimeout(visitTimer)
+    }
+  }, [forced])
+
+  return visiting
 }
 
 function startPondAudio(): () => void {
@@ -118,6 +159,7 @@ export default function App() {
   const stopAudio = useRef<(() => void) | null>(null)
   const nextRippleId = useRef(0)
   const visitor = useRareVisitor()
+  const ducksVisiting = useDuckVisit()
 
   useEffect(() => () => stopAudio.current?.(), [])
 
@@ -175,10 +217,13 @@ export default function App() {
         </div>
       </header>
 
-      <section className="sky-life" aria-label="Birds above the pond">
-        {[0, 1, 2].map((bird) => (
-          <img key={bird} className={`bird bird-${bird + 1}`} src="./assets/bird.webp" alt="" />
-        ))}
+      <section className="sky-life" aria-label="Wildlife above the pond">
+        {ducksVisiting && (
+          <div className="duck-visit" aria-label="Two ducks land on the pond">
+            <img className="duck duck-one" src="./assets/duck.webp" alt="" />
+            <img className="duck duck-two" src="./assets/duck.webp" alt="" />
+          </div>
+        )}
         {visitor === 'hummingbird' && (
           <img className="hummingbird" src="./assets/hummingbird.webp" alt="A green hummingbird visits the flowers" />
         )}
@@ -219,7 +264,13 @@ export default function App() {
 
       <p className="pond-note">Stay awhile. Something small is always happening.</p>
       <p className="sr-only" aria-live="polite">
-        {visitor === 'hummingbird' ? 'A hummingbird has arrived.' : visitor === 'dogs' ? 'Two dogs have arrived at the pond.' : ''}
+        {visitor === 'hummingbird'
+          ? 'A hummingbird has arrived.'
+          : visitor === 'dogs'
+            ? 'Two dogs have arrived at the pond.'
+            : ducksVisiting
+              ? 'Two ducks have landed on the pond.'
+              : ''}
       </p>
     </main>
   )

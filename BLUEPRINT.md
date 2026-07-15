@@ -4,7 +4,7 @@
 
 ## Product Map
 
-Puffer Pond is a responsive, full-screen ambient website for Kayden to leave open on a phone or desktop. Its core promise is simple: opening the site immediately reveals a charming living pond where a family of pea puffers searches for snails while birds and occasional visitors make the habitat feel alive.
+Puffer Pond is a responsive, full-screen ambient website for Kayden to leave open on a phone or desktop. Its core promise is simple: opening the site immediately reveals a charming living pond where a family of pea puffers searches for snails while intermittent ducks and occasional visitors make the habitat feel alive.
 
 Primary user: Kayden, especially on a phone in portrait or landscape orientation.
 
@@ -17,6 +17,8 @@ Founding prompt, preserved verbatim:
 > Goal: A responsive website that has a pond with a family of pea puffers inside of it, swiming and looking for snails in the grass and under drift wood. above the water are trees with birds fling around landing on the ground by the water and in the trees. every once in a while a green humming bird should come out and drink from some flowers, or some dogs should run out and drink from the pond. It should be really cute and fun to watch and have open on my phone.
 
 Hard constraints: responsive website; pond habitat; pea-puffer family; snails, grass, and driftwood; birds with flight and landing behavior; rare green hummingbird and dog visits; cute, watchable phone experience; new remote repository; commit and push when complete.
+
+Current owner revision (2026-07-15): the always-on blue birds are replaced by less-frequent duck pairs that land on the water. The rare green hummingbird remains unchanged, and dogs must stay above the responsive waterline in odd window sizes.
 
 Assumptions: no account, backend, data collection, or paid service is needed. The experience should work as a static site and retain only local sound/theme preferences.
 

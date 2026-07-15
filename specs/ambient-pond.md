@@ -13,7 +13,7 @@ Opening Puffer Pond immediately shows a complete, cute, responsive habitat that 
 - [x] The product is one full-bleed viewport with no required scrolling.
 - [x] Five pea puffers move independently below the waterline.
 - [x] Snails appear in grass and around the driftwood arch.
-- [x] Birds fly above water and visually pause near tree/shore destinations.
+- [x] Intermittent duck pairs glide in and settle on the pond surface.
 - [x] A green hummingbird visits the flowers intermittently.
 - [x] Two friendly dogs intermittently approach the shore and drink.
 - [x] Tap/click below the waterline creates a ripple.
@@ -26,7 +26,9 @@ Opening Puffer Pond immediately shows a complete, cute, responsive habitat that 
 
 - Hummingbird wait window: 25-45 seconds; visible for 11 seconds.
 - Dog wait window: 55-95 seconds; visible for 16 seconds.
+- Duck wait window: 65-100 seconds; visible for 18 seconds.
 - Rare visitors alternate after the first randomized event.
+- Dog sizing and placement stay anchored to the shoreline instead of a fixed top offset.
 - Five puffer profiles use distinct durations, scales, anchors, and routes.
 - Debug-only visitor query strings affect only the initial visible state and remain useful for screenshots.
 - Sound uses a tiny synthesized water-drop texture and creates no network request.
@@ -37,7 +39,7 @@ Opening Puffer Pond immediately shows a complete, cute, responsive habitat that 
 - Palette: sky blue, clear aqua, moss, fern, sage, warm cream, and golden animal accents.
 - Typography: hand-lettered system cursive for title/note; compact rounded system sans for controls.
 - Container model: one full-bleed scene with only two small rounded controls.
-- Production assets: generated environment, puffer, bird, hummingbird, dog pair, and snail in `public/assets/`.
+- Production assets: generated environment, puffer, duck, hummingbird, dog pair, and snail in `public/assets/`.
 - Concept: `docs/concept-desktop.png`.
 
 ## Fidelity Ledger
@@ -46,7 +48,7 @@ Opening Puffer Pond immediately shows a complete, cute, responsive habitat that 
 |---|---|---|---|
 | Full-screen composition | Waterline splits one illustrated viewport | `docs/desktop.png` and `docs/mobile.png` fill each viewport | matched |
 | Copy | Title, Sound, Night, and one bottom note | Same four visible copy elements | matched |
-| Wildlife layering | Birds/dogs/hummingbird above; puffers/snails below | Final screenshots keep every species in its habitat | fixed after first QA pass |
+| Wildlife layering | Ducks on the surface; dogs/hummingbird above; puffers/snails below | Final screenshots keep every species in its habitat | matched after responsive shoreline polish |
 | Palette and asset treatment | Bright gouache nature-book world | Generated background and transparent sprites share the same palette/medium | matched |
 | Controls | Two warm-cream rounded controls in top-right | 48px desktop and 46px mobile touch controls | matched |
 | Responsive continuation | Phone should retain sky, shore, water, and underwater log/grass | 390x844 capture shows all habitat bands without overflow | matched |
@@ -67,3 +69,5 @@ Append only.
 | 2026-07-14 | Playwright 1536x1024 and 390x844 captures with forced rare visitors | pass after correcting puffer path origins; no visual overflow | `docs/desktop.png`, `docs/mobile.png` |
 | 2026-07-14 | Playwright interaction script | pass: sound true, night true, ripple count 1, overflow false | terminal JSON proof |
 | 2026-07-14 | GitHub Pages workflow run `29386134625` plus live 390x844 Playwright capture | pass: build and deploy jobs green; public phone view rendered correctly | `https://kaydenclark.github.io/Puffer-Pond/` |
+| 2026-07-15 | Duck scheduling regression plus full suite and production build | pass: 4 tests; TypeScript and Vite build green | terminal proof |
+| 2026-07-15 | Playwright 1536x1024 and 390x844 duck captures, 1100x460 dog capture, and reduced-motion inspection | pass: ducks settle on the surface, dogs stay above the odd-window waterline, stationary duck pair remains visible with reduced motion, full-page phone proof is exactly 390x844 | `docs/desktop.png`, `docs/mobile.png`, `docs/odd-window.png` |
