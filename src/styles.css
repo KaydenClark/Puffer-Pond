@@ -1,0 +1,455 @@
+:root {
+  color: #243d2c;
+  font-family: Inter, ui-rounded, "Segoe UI", system-ui, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.pond {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  height: 100%;
+  min-height: 100svh;
+  overflow: hidden;
+  background: #7ccbd0;
+  cursor: crosshair;
+  touch-action: manipulation;
+}
+
+.pond-background,
+.sunlight,
+.pond::after {
+  position: absolute;
+  inset: 0;
+}
+
+.pond-background {
+  z-index: -3;
+  background: url('/assets/pond-environment.png') center center / cover no-repeat;
+  transform: scale(1.006);
+}
+
+.sunlight {
+  z-index: -2;
+  pointer-events: none;
+  background: linear-gradient(112deg, rgba(255, 252, 211, 0.18), transparent 34%, rgba(255, 255, 255, 0.08) 70%, transparent);
+  mix-blend-mode: screen;
+  animation: light-drift 16s ease-in-out infinite alternate;
+}
+
+.pond::after {
+  z-index: 20;
+  content: '';
+  pointer-events: none;
+  background: rgba(18, 46, 76, 0);
+  transition: background 900ms ease;
+}
+
+.pond.is-night::after {
+  background: rgba(13, 35, 66, 0.46);
+  mix-blend-mode: multiply;
+}
+
+.pond-header {
+  position: absolute;
+  z-index: 40;
+  top: max(18px, env(safe-area-inset-top));
+  left: max(22px, env(safe-area-inset-left));
+  right: max(22px, env(safe-area-inset-right));
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  pointer-events: none;
+}
+
+.pond-header h1 {
+  margin: 0;
+  color: #fffbea;
+  font-family: "Segoe Print", "Bradley Hand", cursive;
+  font-size: clamp(1.7rem, 3.2vw, 3.2rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.06em;
+  text-shadow: 0 2px 14px rgba(22, 50, 27, 0.44), 0 1px 1px rgba(22, 50, 27, 0.55);
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+  pointer-events: auto;
+}
+
+.controls button {
+  display: inline-flex;
+  min-width: 48px;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 999px;
+  color: #365438;
+  background: rgba(255, 252, 225, 0.9);
+  box-shadow: 0 7px 22px rgba(38, 76, 46, 0.2);
+  font-size: 0.93rem;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease;
+}
+
+.controls button:hover {
+  transform: translateY(-2px);
+  background: #fffde9;
+  box-shadow: 0 10px 24px rgba(38, 76, 46, 0.28);
+}
+
+.controls button:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+}
+
+.controls button[aria-pressed='true'] {
+  background: #f5f0bf;
+}
+
+.controls svg {
+  width: 21px;
+  height: 21px;
+  flex: 0 0 auto;
+  fill: currentColor;
+}
+
+.sky-life,
+.underwater-life,
+.ripple-layer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.bird {
+  position: absolute;
+  z-index: 4;
+  width: clamp(54px, 7vw, 108px);
+  height: auto;
+  filter: drop-shadow(0 4px 4px rgba(45, 70, 40, 0.16));
+  will-change: transform;
+}
+
+.bird-1 {
+  top: 12%;
+  left: 18%;
+  animation: bird-one 19s ease-in-out -5s infinite;
+}
+
+.bird-2 {
+  top: 18%;
+  right: 19%;
+  width: clamp(46px, 6vw, 94px);
+  animation: bird-two 23s ease-in-out -14s infinite;
+}
+
+.bird-3 {
+  top: 8%;
+  left: 48%;
+  width: clamp(38px, 5vw, 76px);
+  animation: bird-three 27s ease-in-out -9s infinite;
+}
+
+.hummingbird {
+  position: absolute;
+  z-index: 7;
+  top: 22%;
+  left: 3%;
+  width: clamp(72px, 9vw, 138px);
+  filter: drop-shadow(0 5px 5px rgba(23, 74, 46, 0.2));
+  animation: hummingbird-visit 11s ease-in-out both;
+}
+
+.dogs {
+  position: absolute;
+  z-index: 6;
+  top: 19%;
+  right: 2%;
+  width: clamp(190px, 27vw, 430px);
+  filter: drop-shadow(0 8px 6px rgba(58, 69, 34, 0.22));
+  transform-origin: 45% 78%;
+  animation: dogs-visit 16s ease-in-out both;
+}
+
+.puffer-route {
+  position: absolute;
+  z-index: 8;
+  top: var(--top);
+  left: var(--left);
+  width: clamp(72px, 10vw, 145px);
+  aspect-ratio: 1;
+  animation: puffer-swim var(--duration) ease-in-out var(--delay) infinite;
+  transform-origin: center;
+  will-change: transform;
+}
+
+.puffer-route img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transform: scale(var(--scale));
+  filter: drop-shadow(0 6px 8px rgba(5, 71, 66, 0.22));
+  animation: puffer-bob 2.6s ease-in-out infinite alternate;
+}
+
+.route-wide { --dx: 15vw; --dy: 6vh; }
+.route-loop { --dx: 10vw; --dy: 8vh; }
+.route-grass { --dx: 8vw; --dy: 4vh; }
+.route-log { --dx: 6vw; --dy: 4vh; }
+.route-deep { --dx: 10vw; --dy: 7vh; }
+
+.snail {
+  position: absolute;
+  z-index: 6;
+  width: clamp(28px, 3.5vw, 52px);
+  height: auto;
+  filter: drop-shadow(0 3px 2px rgba(65, 60, 24, 0.3));
+  animation: snail-crawl 46s ease-in-out infinite alternate;
+}
+
+.snail-one { left: 10%; top: 83%; animation-delay: -11s; }
+.snail-two { left: 69%; top: 66%; width: clamp(24px, 3vw, 46px); animation-delay: -31s; }
+.snail-three { left: 85%; top: 87%; width: clamp(20px, 2.7vw, 41px); animation-delay: -22s; }
+
+.bubbles {
+  position: absolute;
+  z-index: 5;
+  width: 9px;
+  height: 9px;
+  border: 1.5px solid rgba(230, 255, 246, 0.74);
+  border-radius: 50%;
+  box-shadow: 10px 28px 0 -2px rgba(230, 255, 246, 0.5), -4px 54px 0 1px rgba(230, 255, 246, 0.38), 14px 82px 0 -1px rgba(230, 255, 246, 0.44);
+  animation: bubbles-rise 6.5s ease-in infinite;
+}
+
+.bubbles-one { left: 31%; top: 79%; animation-delay: -2s; }
+.bubbles-two { left: 75%; top: 84%; animation-delay: -5s; transform: scale(0.75); }
+
+.ripple-layer {
+  z-index: 30;
+}
+
+.ripple {
+  position: absolute;
+  width: 16px;
+  height: 7px;
+  border: 2px solid rgba(238, 255, 244, 0.82);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: ripple-out 1.5s ease-out forwards;
+}
+
+.pond-note {
+  position: absolute;
+  z-index: 40;
+  left: max(24px, env(safe-area-inset-left));
+  bottom: max(20px, env(safe-area-inset-bottom));
+  max-width: min(560px, 74vw);
+  margin: 0;
+  color: #fffbea;
+  font-family: "Segoe Print", "Bradley Hand", cursive;
+  font-size: clamp(0.82rem, 1.45vw, 1.2rem);
+  line-height: 1.4;
+  text-shadow: 0 2px 8px rgba(21, 59, 41, 0.82);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@keyframes puffer-swim {
+  0% { transform: translate(calc(var(--dx) * -0.35), 0) scaleX(1); }
+  24% { transform: translate(calc(var(--dx) * 0.45), calc(var(--dy) * -0.7)) scaleX(1); }
+  49% { transform: translate(var(--dx), calc(var(--dy) * 0.2)) scaleX(1); }
+  50% { transform: translate(var(--dx), calc(var(--dy) * 0.2)) scaleX(-1); }
+  74% { transform: translate(calc(var(--dx) * 0.35), var(--dy)) scaleX(-1); }
+  99% { transform: translate(calc(var(--dx) * -0.35), 0) scaleX(-1); }
+  100% { transform: translate(calc(var(--dx) * -0.35), 0) scaleX(1); }
+}
+
+@keyframes puffer-bob {
+  from { transform: scale(var(--scale)) translateY(-2px) rotate(-1.2deg); }
+  to { transform: scale(var(--scale)) translateY(3px) rotate(1.2deg); }
+}
+
+@keyframes bird-one {
+  0%, 100% { transform: translate(-28vw, 3vh) rotate(-5deg) scaleX(1); }
+  24% { transform: translate(20vw, 6vh) rotate(3deg) scaleX(1); }
+  37%, 49% { transform: translate(30vw, -1vh) rotate(-8deg) scaleX(0.78); }
+  72% { transform: translate(5vw, 21vh) rotate(4deg) scaleX(-1); }
+}
+
+@keyframes bird-two {
+  0%, 100% { transform: translate(26vw, 1vh) rotate(3deg) scaleX(-1); }
+  28% { transform: translate(-16vw, 10vh) rotate(-4deg) scaleX(-1); }
+  41%, 54% { transform: translate(-23vw, 18vh) rotate(8deg) scale(0.75) scaleX(-1); }
+  78% { transform: translate(3vw, 2vh) rotate(-3deg) scaleX(1); }
+}
+
+@keyframes bird-three {
+  0%, 100% { transform: translate(-6vw, -12vh) rotate(-4deg); }
+  30% { transform: translate(31vw, 11vh) rotate(7deg); }
+  43%, 58% { transform: translate(35vw, 21vh) rotate(-7deg) scale(0.74); }
+  81% { transform: translate(-22vw, 5vh) rotate(-2deg) scaleX(-1); }
+}
+
+@keyframes hummingbird-visit {
+  0% { opacity: 0; transform: translate(-18vw, 2vh) rotate(-4deg); }
+  16% { opacity: 1; transform: translate(6vw, 3vh) rotate(2deg); }
+  32%, 64% { opacity: 1; transform: translate(9vw, 7vh) rotate(-3deg); }
+  48% { opacity: 1; transform: translate(11vw, 5.5vh) rotate(3deg); }
+  82% { opacity: 1; transform: translate(19vw, -5vh) rotate(-5deg); }
+  100% { opacity: 0; transform: translate(48vw, -16vh) rotate(3deg); }
+}
+
+@keyframes dogs-visit {
+  0% { opacity: 0; transform: translateX(38vw) rotate(-1deg); }
+  18% { opacity: 1; transform: translateX(3vw) rotate(-1deg); }
+  34% { transform: translateX(0) rotate(0deg); }
+  42%, 66% { transform: translateX(0) translateY(2.2vh) rotate(3deg); }
+  74% { transform: translateX(0) rotate(0deg); }
+  86% { opacity: 1; transform: translateX(8vw) rotate(-1deg); }
+  100% { opacity: 0; transform: translateX(42vw) rotate(-2deg); }
+}
+
+@keyframes snail-crawl {
+  from { transform: translateX(-2vw) rotate(-1deg); }
+  to { transform: translateX(7vw) rotate(1deg); }
+}
+
+@keyframes bubbles-rise {
+  from { opacity: 0; transform: translateY(4vh) scale(0.65); }
+  15% { opacity: 0.75; }
+  to { opacity: 0; transform: translateY(-24vh) scale(1.2); }
+}
+
+@keyframes ripple-out {
+  from { opacity: 0.92; transform: translate(-50%, -50%) scale(0.4); }
+  to { opacity: 0; transform: translate(-50%, -50%) scale(9); }
+}
+
+@keyframes light-drift {
+  from { transform: translateX(-3%); opacity: 0.7; }
+  to { transform: translateX(3%); opacity: 1; }
+}
+
+@media (max-width: 640px) {
+  .pond-background {
+    background-position: 48% center;
+  }
+
+  .pond-header {
+    top: max(13px, env(safe-area-inset-top));
+    left: max(14px, env(safe-area-inset-left));
+    right: max(14px, env(safe-area-inset-right));
+  }
+
+  .pond-header h1 {
+    font-size: clamp(1.4rem, 6.4vw, 1.8rem);
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .controls {
+    gap: 7px;
+  }
+
+  .controls button {
+    width: 46px;
+    height: 46px;
+    min-width: 46px;
+    min-height: 46px;
+    padding: 0;
+  }
+
+  .controls button span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+  }
+
+  .puffer-route {
+    width: clamp(68px, 23vw, 112px);
+  }
+
+  .route-wide { --dx: 12vw; --dy: 7vh; }
+  .route-loop { --dx: 9vw; --dy: 6vh; }
+  .route-grass { --dx: 7vw; --dy: 4vh; }
+  .route-log { --dx: 5vw; --dy: 3vh; }
+  .route-deep { --dx: 8vw; --dy: 5vh; }
+
+  .bird-1 { left: 9%; }
+  .bird-2 { right: 8%; }
+  .bird-3 { left: 45%; }
+  .dogs { top: 25%; right: -12%; width: clamp(190px, 66vw, 300px); }
+  .hummingbird { top: 25%; left: -4%; width: clamp(74px, 28vw, 118px); }
+
+  .pond-note {
+    left: max(15px, env(safe-area-inset-left));
+    bottom: max(14px, env(safe-area-inset-bottom));
+    max-width: 76vw;
+    font-size: 0.78rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+  }
+
+  .bird-2,
+  .bird-3,
+  .bubbles {
+    display: none;
+  }
+}
