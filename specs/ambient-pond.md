@@ -66,3 +66,4 @@ Append only.
 | 2026-07-14 | `npm.cmd run build` | pass: Vite production build, 17 modules | `dist/` regenerated |
 | 2026-07-14 | Playwright 1536x1024 and 390x844 captures with forced rare visitors | pass after correcting puffer path origins; no visual overflow | `docs/desktop.png`, `docs/mobile.png` |
 | 2026-07-14 | Playwright interaction script | pass: sound true, night true, ripple count 1, overflow false | terminal JSON proof |
+| 2026-07-14 | GitHub Pages workflow run `29386134625` plus live 390x844 Playwright capture | pass: build and deploy jobs green; public phone view rendered correctly | `https://kaydenclark.github.io/Puffer-Pond/` |

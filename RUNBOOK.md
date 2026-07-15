@@ -116,6 +116,9 @@ The repository includes `.github/workflows/deploy-pages.yml`. A push to `main` r
 
 Vite uses `base: './'`, so hashed assets and the pond art resolve correctly below a repository subpath.
 
+- Repository: `https://github.com/KaydenClark/Puffer-Pond`
+- Live site: `https://kaydenclark.github.io/Puffer-Pond/`
+
 ## Version-Control Procedures
 
 Before committing:
@@ -155,3 +158,4 @@ Verified during Genesis on 2026-07-14:
 - desktop render: 1536x1024;
 - phone render: 390x844;
 - interaction QA: sound and night toggled to `aria-pressed=true`, one ripple appeared, and overflow was false.
+- GitHub Pages workflow run `29386134625`: build and deploy jobs passed; the live site was visually checked at 390x844.

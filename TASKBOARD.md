@@ -2,7 +2,7 @@
 
 > Generated from LLM Workbench v2.3.
 
-**Shipping state:** Complete ambient-scene MVP with automated GitHub Pages deployment.
+**Shipping state:** Complete ambient-scene MVP live at `https://kaydenclark.github.io/Puffer-Pond/`.
 
 **Health:** Tests and production build are green; desktop and 390x844 visual checks pass.
 

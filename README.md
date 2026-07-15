@@ -2,6 +2,8 @@
 
 Puffer Pond is a responsive, full-screen living illustration: a family of pea puffers explores grass and driftwood for snails while birds, a green hummingbird, and two thirsty dogs visit the water above.
 
+**[Open Puffer Pond](https://kaydenclark.github.io/Puffer-Pond/)**
+
 ![Puffer Pond desktop preview](docs/desktop.png)
 
 Tap or click the water to make a ripple. The top-right controls enable gentle pond sounds and switch between day and night. Sound remains off until the visitor explicitly enables it.
@@ -37,7 +39,7 @@ Read `AGENTS.md`, then `TASKBOARD.md`, then the active capability spec before ma
 
 ## Project Status
 
-The Genesis slice and complete ambient scene are implemented. See `TASKBOARD.md` for optional next enhancements and `specs/ambient-pond.md` for acceptance evidence.
+The Genesis slice and complete ambient scene are implemented and live on GitHub Pages. See `TASKBOARD.md` for optional next enhancements and `specs/ambient-pond.md` for acceptance evidence.
 
 ## License
 
