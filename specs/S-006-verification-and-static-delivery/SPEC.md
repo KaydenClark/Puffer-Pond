@@ -10,7 +10,7 @@
 **Updated:** 2026-07-17
 **Catalog description:** Keep deterministic logic tests, production builds, browser acceptance evidence, GitHub Pages deployment, and remote recovery reproducible.
 **Blockers:** none
-**Latest event:** TK-004 audit remediation now fails closed on missing duck or dog image data and is ready for re-audit.
+**Latest event:** TK-004 fail-closed remediation and its pushed fresh-clone recovery procedure pass and are ready for re-audit.
 **Next gate:** Auditor re-reviews the immutable pushed remediation checkpoint before TK-004 closes.
 
 ## Outcome
@@ -155,6 +155,7 @@ the exact local-server and artifact behavior.
 | 2026-07-17 | canon harvest | Reverified native and live proof and isolated browser automation as the smallest safe engineer ticket | npm test 4/4; npm run build 17 modules; live HTTP 200; origin/main and workflow SHA match | stable S-006 and current Runbook created | TK-004 ready |
 | 2026-07-17 | TK-004 | Added repository-owned headless browser acceptance and compact reduced-motion proof artifact; checkpoint remains open for Auditor | red: npm run test:browser missing script; green: targeted 4/4, Playwright 5/5, full 4/4, 17-module build, render, doctor, diff check | Runbook and README add setup, exact command, coverage, and artifact | immutable checkpoint review by Auditor |
 | 2026-07-17 | TK-004 audit remediation | Required decoded duck and dog image data before stationary or geometry acceptance and added a blocked-asset regression | red: blocked images remained wrapper-visible with zero natural size; green: Playwright 6/6 repeated, targeted/full Vitest 4/4, 17-module build, render, doctor, diff check | Runbook browser contract and fresh-clone Chromium/browser commands updated | immutable remediation checkpoint re-audit |
+| 2026-07-17 | TK-004 remote recovery | Reproduced the updated verification procedure from pushed remediation checkpoint ad51ced | fresh clone; npm ci; Chromium install; Vitest 4/4; Playwright 6/6; 17-module build; doctor | Runbook procedure reproduced without correction | immutable remediation checkpoint re-audit |
 
 ## Completion Result
 
