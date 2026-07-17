@@ -10,7 +10,11 @@
 
 - Node.js 24 in GitHub Pages CI.
 - Current local verification also passes on Node.js 26.3.0 with npm 11.16.0.
-- A modern Chromium-class browser for visual and interaction proof.
+- Chromium installed through Playwright for headless acceptance:
+
+~~~bash
+npx playwright install chromium
+~~~
 
 No environment variables, credentials, backend, database, external API, or
 paid service are required. Night preference is stored in localStorage; sound is
@@ -61,10 +65,23 @@ Targeted deterministic suite:
 npm test -- src/simulation.test.ts
 ~~~
 
+Targeted headless browser acceptance:
+
+~~~bash
+npm run test:browser
+~~~
+
+The runner starts a local Vite server on 127.0.0.1:4173 and checks desktop and
+phone overflow, phone control state and touch geometry, valid and rejected
+ripple input, reduced-motion pond/duck composition, and forced dog shoreline
+geometry at 1100x460. It writes the compact reduced-motion proof artifact to
+docs/browser-acceptance.jpg.
+
 Full native gate:
 
 ~~~bash
 npm test
+npm run test:browser
 npm run build
 node tools/spec-workbench.mjs render
 node tools/spec-workbench.mjs doctor
@@ -99,6 +116,9 @@ Current claims to preserve:
 - sound, night mode, and ripple interactions remain pointer/keyboard usable;
 - the viewport does not scroll horizontally or vertically; and
 - reduced motion retains a legible, mostly still scene.
+
+The automated geometry and interaction gate complements these manual captures;
+it does not replace subjective screenshot inspection or the owner phone watch.
 
 The owner-only five-minute phone watch records device/browser, portrait and
 landscape cropping, perceived smoothness, thermal/battery concern, control

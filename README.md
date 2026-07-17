@@ -42,10 +42,16 @@ Open http://127.0.0.1:5173.
 
 ~~~bash
 npm test
+npx playwright install chromium
+npm run test:browser
 npm run build
 node tools/spec-workbench.mjs doctor
 node tools/spec-workbench.mjs next --json
 ~~~
+
+The headless browser gate also refreshes
+[docs/browser-acceptance.jpg](docs/browser-acceptance.jpg), a compact
+reduced-motion proof image.
 
 ## Project Status
 
