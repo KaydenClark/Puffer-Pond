@@ -2,162 +2,189 @@
 
 > Generated from LLM Workbench v2.3.
 
+**Last reviewed:** 2026-07-17
+**Runtime owner:** Kayden
+**Environment:** local development and public GitHub Pages
+
 ## Prerequisites
 
-Verified on:
+- Node.js 24 in GitHub Pages CI.
+- Current local verification also passes on Node.js 26.3.0 with npm 11.16.0.
+- A modern Chromium-class browser for visual and interaction proof.
 
-- Windows PowerShell
-- Node.js `v24.14.1`
-- npm `11.11.0`
-- Chromium through Playwright `1.61.1` for visual verification
-
-## Environment Configuration
-
-No environment variables, credentials, backend, database, or external API are required.
-
-Sound and day/night choices are stored only in the browser's local storage.
+No environment variables, credentials, backend, database, external API, or
+paid service are required. Night preference is stored in localStorage; sound is
+session-local and opt-in.
 
 ## Install
 
-From the repository root:
+~~~bash
+npm ci
+~~~
 
-```powershell
-npm.cmd install
-```
-
-For a clean lockfile-based install, including CI:
-
-```powershell
-npm.cmd ci
-```
+Expected result: dependencies install from package-lock.json without changing it.
 
 ## Run Locally
 
-```powershell
-npm.cmd run dev -- --host 127.0.0.1
-```
+~~~bash
+npm run dev -- --host 127.0.0.1
+~~~
 
-Open `http://127.0.0.1:5173`.
+Open http://127.0.0.1:5173. Deterministic visitor inspection URLs are:
 
-Rare visitors can be shown immediately for deterministic visual inspection:
+- http://127.0.0.1:5173/?visitor=hummingbird
+- http://127.0.0.1:5173/?visitor=dogs
+- http://127.0.0.1:5173/?visitor=ducks
 
-- `http://127.0.0.1:5173/?visitor=hummingbird`
-- `http://127.0.0.1:5173/?visitor=dogs`
-- `http://127.0.0.1:5173/?visitor=ducks`
+## Stable Spec Lifecycle
+
+~~~bash
+node tools/spec-workbench.mjs doctor
+node tools/spec-workbench.mjs next --json
+node tools/spec-workbench.mjs show S-006
+~~~
+
+Claim and close commands are:
+
+~~~bash
+node tools/spec-workbench.mjs claim S-006 --agent engineer-name --date 2026-07-17
+node tools/spec-workbench.mjs close S-006 --proof "named proof" --docs "docs result" --remaining-gap "remaining gap" --date 2026-07-17
+node tools/spec-workbench.mjs render
+node tools/spec-workbench.mjs doctor
+~~~
 
 ## Test And Build
 
-Run the behavior suite:
+Targeted deterministic suite:
 
-```powershell
-npm.cmd test
-```
+~~~bash
+npm test -- src/simulation.test.ts
+~~~
 
-Run the TypeScript and production build gate:
+Full native gate:
 
-```powershell
-npm.cmd run build
-```
-
-The complete local verification gate is:
-
-```powershell
-npm.cmd test
-npm.cmd run build
-```
-
-### Test Coverage Policy
-
-- Pure scheduling and state rules require focused Vitest coverage.
-- Visual motion, responsive composition, and browser APIs require real-browser inspection.
-- Bug fixes should add a regression test when the failure can be expressed deterministically.
-
-## Evaluation And Benchmarking
-
-Capture the approved desktop and phone viewports with the local server running:
-
-```powershell
-npx.cmd --yes --package playwright playwright screenshot --browser=chromium --viewport-size="1536,1024" --wait-for-timeout=10000 "http://127.0.0.1:5173/?visitor=ducks" "docs/desktop.png"
-npx.cmd --yes --package playwright playwright screenshot --browser=chromium --viewport-size="390,844" --wait-for-timeout=10000 "http://127.0.0.1:5173/?visitor=ducks" "docs/mobile.png"
-npx.cmd --yes --package playwright playwright screenshot --browser=chromium --viewport-size="1100,460" --wait-for-timeout=8000 "http://127.0.0.1:5173/?visitor=dogs" "docs/odd-window.png"
-```
-
-Inspect `docs/concept-desktop.png`, `docs/desktop.png`, and `docs/mobile.png` together. Check waterline discipline, full-viewport fit, title/control legibility, touch targets, wildlife layering, palette, and cropping.
-
-### Benchmark-Driven Improvement
-
-Profile only after a real phone shows frame drops. Preserve the asset-led illustration before reducing character count or motion.
-
-### Claims To Test
-
-- five distinct puffer movement profiles remain below the waterline;
-- hummingbird delays remain 25-45 seconds, dog delays remain 55-95 seconds, and duck landings wait 65-100 seconds;
-- rare events alternate so neither visitor is starved;
-- the viewport never scrolls horizontally or vertically;
-- sound, night mode, and ripple interactions remain usable by pointer and keyboard.
-
-### Evaluation Design
-
-Use a 1536x1024 desktop viewport and a 390x844 phone viewport. Force one visitor per capture, and include an 1100x460 dog capture when changing shoreline positioning. Use the normal unforced URL for a five-minute watch test when tuning pacing.
-
-### Workbench Evaluation Commands
-
-No upstream harness evaluator is copied into this downstream project. Verify the v2.3 completion gate with targeted placeholder searches plus the project tests and build.
-
-### Harness Feedback Loop
-
-Record project-specific process friction in the active spec evidence log. Escalate a reusable harness problem to the source LLM Workbench repository only when it affects more than this project.
-
-## Data Operations
-
-There is no database. To reset local preferences, clear site data for `127.0.0.1:5173` or remove the `puffer-pond-night` local-storage key.
-
-## Deployment Or Startup
-
-The repository includes `.github/workflows/deploy-pages.yml`. A push to `main` runs tests, builds `dist/`, uploads the static artifact, and deploys it to GitHub Pages.
-
-Vite uses `base: './'`, so hashed assets and the pond art resolve correctly below a repository subpath.
-
-- Repository: `https://github.com/KaydenClark/Puffer-Pond`
-- Live site: `https://kaydenclark.github.io/Puffer-Pond/`
-
-## Version-Control Procedures
-
-Before committing:
-
-```powershell
-git status --short --branch
+~~~bash
+npm test
+npm run build
+node tools/spec-workbench.mjs render
+node tools/spec-workbench.mjs doctor
 git diff --check
-npm.cmd test
-npm.cmd run build
-```
+~~~
 
-Stage only intended project files. Do not stage `node_modules/`, `dist/`, `tmp/`, or obsolete browser captures.
+Pure scheduling and state rules require Vitest coverage. Visible motion,
+responsive composition, browser APIs, accessibility, and subjective calmness
+require browser or owner proof. A skipped automated test must name why the
+behavior is not deterministic and provide the strongest repeatable manual seam.
+
+## Visual And Interaction Verification
+
+With the local server running:
+
+~~~bash
+npx --yes --package playwright playwright screenshot --browser=chromium --viewport-size="1536,1024" --wait-for-timeout=10000 "http://127.0.0.1:5173/?visitor=ducks" "docs/desktop.png"
+npx --yes --package playwright playwright screenshot --browser=chromium --viewport-size="390,844" --wait-for-timeout=10000 "http://127.0.0.1:5173/?visitor=ducks" "docs/mobile.png"
+npx --yes --package playwright playwright screenshot --browser=chromium --viewport-size="1100,460" --wait-for-timeout=8000 "http://127.0.0.1:5173/?visitor=dogs" "docs/odd-window.png"
+~~~
+
+Inspect docs/concept-desktop.png, docs/desktop.png, docs/mobile.png, and
+docs/odd-window.png together. Check full-viewport fit, waterline discipline,
+touch targets, wildlife layering, title/control legibility, palette, and cropping.
+
+Current claims to preserve:
+
+- five distinct puffer profiles remain below the waterline;
+- hummingbird delays are 25-45 seconds, dog delays 55-95 seconds, and duck
+  landings 65-100 seconds;
+- rare visitors alternate so neither is starved;
+- sound, night mode, and ripple interactions remain pointer/keyboard usable;
+- the viewport does not scroll horizontally or vertically; and
+- reduced motion retains a legible, mostly still scene.
+
+The owner-only five-minute phone watch records device/browser, portrait and
+landscape cropping, perceived smoothness, thermal/battery concern, control
+comfort, and whether the scene remains calm rather than repetitive.
+
+## Evaluation And Harness Feedback
+
+Static evaluator diagnostics:
+
+~~~bash
+node "/Users/kayden/GPT_OS/Workbench Factory/tools/evaluate-workbench.mjs" --path "/Users/kayden/GPT_OS/Projects/Puffer-Pond" --include-controls
+~~~
+
+The evaluator is a harness diagnostic, not product-outcome proof. Record reusable
+harness friction in HARNESS_FEEDBACK.md and product proof in the assigned spec.
+
+## Deployment And Live Verification
+
+Pushes to main run .github/workflows/deploy-pages.yml: npm ci, npm test, npm run
+build, artifact upload, and GitHub Pages deployment. Feature/planning branches do
+not deploy. The owner controls merge to main and the resulting production change.
+
+- Repository: https://github.com/KaydenClark/Puffer-Pond
+- Live site: https://kaydenclark.github.io/Puffer-Pond/
+
+Read-only checks:
+
+~~~bash
+gh api repos/KaydenClark/Puffer-Pond/actions/runs --jq '.workflow_runs[:3][] | [.id,.head_sha,.status,.conclusion,.html_url] | @tsv'
+curl -fsSIL https://kaydenclark.github.io/Puffer-Pond/
+~~~
+
+## Version Control And Remote Recovery
+
+~~~bash
+git status --short --branch
+git remote -v
+git branch -vv
+git diff --check
+git switch -c codex/<spec-ticket-slug>
+git push -u origin codex/<spec-ticket-slug>
+~~~
+
+Fresh-clone verification for the canon checkpoint:
+
+~~~bash
+puffer_verify_dir=$(mktemp -d)
+git clone https://github.com/KaydenClark/Puffer-Pond.git "$puffer_verify_dir/Puffer-Pond"
+git -C "$puffer_verify_dir/Puffer-Pond" checkout codex/puffer-pond-canon-spec-coverage
+cd "$puffer_verify_dir/Puffer-Pond"
+npm ci
+npm test
+npm run build
+node tools/spec-workbench.mjs doctor
+~~~
+
+The update source was origin/main at
+93c3d2cf9bb4fba5f3e501f7ebc0670b9435ed11. The vendored spec-workbench tool
+checksum is ef31d219c092d8c9b1c595734d933de9560c1d099967daf212b7481040acd672;
+markdown-table.mjs is acca5cb04cecb0044c74aaa38f42d6f0e4e6addb26b45a744d14ca0b74487e6b.
 
 ## Upgrading The Harness
 
-This project was generated from LLM Workbench v2.3 on the linked `integration` branch. Compare changed template sections against the source, preserve project-specific facts, bump all four control-doc stamps together, re-run the full gate, and append evidence to `specs/ambient-pond.md`.
+Canonical source: /Users/kayden/GPT_OS/Workbench Factory. Use the update-harness
+protocol, not first-time Adoption. Verify source and target branches, capture the
+native baseline, reconcile rather than overwrite project truth, copy lifecycle
+helpers exactly, update the dedicated upgrade spec, render, doctor, re-run the
+native gate, and push a remotely recoverable checkpoint. Do not rerun Genesis.
 
 ## Troubleshooting
 
-- **Vite reports `spawn EPERM` in a sandbox:** run the dev server in a normal local PowerShell; the application build itself is not failing.
-- **Wildlife appears above/below the wrong layer:** inspect percentage anchors and transform paths in `src/styles.css` against the visual waterline.
-- **No sound plays:** sound is opt-in; click the Sound control. Browser autoplay rules intentionally prevent startup audio.
-- **A rare visitor does not appear quickly:** use the deterministic query string for inspection or wait for its configured interval.
-- **Pages serves missing assets:** confirm `vite.config.ts` still uses `base: './'` and the workflow uploads `dist/`.
+| Symptom | Likely cause | Check | Fix |
+|---|---|---|---|
+| Visitor does not appear quickly | normal intermittent pacing | use a visitor query URL | use forced URL only for inspection |
+| Wildlife crosses wrong layer | responsive anchor/path drift | compare CSS percentages with waterline capture | correct the smallest anchor/path and add proof |
+| Sound does not start | browser autoplay protection | inspect Sound aria-pressed state | explicitly activate Sound |
+| Pages has missing assets | wrong Vite base or stale artifact | inspect vite.config.ts and workflow | retain base './' and rebuild |
+| Doctor reports render drift | generated regions are stale | run render then doctor | do not hand-edit generated regions |
 
 ## Recovery And Rollback
 
-Use Git history to revert the smallest offending commit. Do not reset or rewrite shared history. Regenerate `dist/` with `npm.cmd run build`; never edit build output directly.
+Use Git history to revert the smallest offending change. Do not reset shared
+history or edit dist/ directly. Rebuild, rerun the failed check, append evidence
+to the assigned spec, render, and doctor.
 
 ## Operational Proof
 
-Verified during Genesis on 2026-07-14:
-
-- red test failed because `src/simulation.ts` did not yet exist;
-- green test: 3 Vitest tests passed;
-- production build: 17 modules transformed successfully;
-- desktop render: 1536x1024;
-- phone render: 390x844;
-- interaction QA: sound and night toggled to `aria-pressed=true`, one ripple appeared, and overflow was false.
-- GitHub Pages workflow run `29386134625`: build and deploy jobs passed; the live site was visually checked at 390x844.
+The completed capability specs retain Genesis, visual, deployment, and upgrade
+evidence. Routine read-only checks need only be named in the final response.

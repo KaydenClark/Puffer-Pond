@@ -1,46 +1,58 @@
 # Puffer Pond
 
-Puffer Pond is a responsive, full-screen living illustration: a family of pea puffers explores grass and driftwood for snails while ducks land on the surface and a green hummingbird and two thirsty dogs visit the shore.
+Puffer Pond is a responsive, full-screen living illustration: a family of pea
+puffers explores grass and driftwood for snails while ducks land on the surface
+and a green hummingbird and two thirsty dogs visit the shore.
 
 **[Open Puffer Pond](https://kaydenclark.github.io/Puffer-Pond/)**
 
 ![Puffer Pond desktop preview](docs/desktop.png)
 
-Tap or click the water to make a ripple. The top-right controls enable gentle pond sounds and switch between day and night. Sound remains off until the visitor explicitly enables it.
+Tap or click the water to make a ripple. The top-right controls enable gentle
+pond sounds and switch between day and night. Sound stays off until explicitly
+enabled.
 
-## How This Project Is Run
+## Project Role
 
-Project truth is split across four control documents:
+Puffer Pond is a real ambient product and the active small visual-product test
+project for LLM Workbench Genesis, stable specs, responsive proof, static
+deployment, remote recovery, and later harness/canon updates. That test role
+does not make optional product ideas automatically approved.
 
-- `AGENTS.md` - agent boundaries, engineering rules, and proof requirements.
-- `BLUEPRINT.md` - product identity, architecture, invariants, and non-goals.
-- `TASKBOARD.md` - current status, hot work queue, and owner decisions.
-- `RUNBOOK.md` - exact setup, verification, deployment, and recovery commands.
+## Control Surface
 
-Capability behavior and acceptance evidence live in `specs/ambient-pond.md`.
+- AGENTS.md - agent boundaries, lifecycle, safety, and verification.
+- BLUEPRINT.md - product identity, architecture, invariants, and coverage matrix.
+- LEXICON.md - shared project and Workbench definitions.
+- TASKBOARD.md - generated hot projection and owner decisions.
+- RUNBOOK.md - exact setup, lifecycle, verification, deployment, and recovery.
+- CLAUDE.md - thin Claude bridge to the shared agent contract.
+- specs/S-###-slug/SPEC.md - durable capability requirements, tickets, and proof.
+
+HARNESS_FEEDBACK.md records reusable Workbench friction rather than product work.
 
 ## Getting Started
 
-```powershell
-npm.cmd install
-npm.cmd run dev -- --host 127.0.0.1
-```
+~~~bash
+npm ci
+npm run dev -- --host 127.0.0.1
+~~~
 
-Open `http://127.0.0.1:5173`.
+Open http://127.0.0.1:5173.
 
-```powershell
-npm.cmd test
-npm.cmd run build
-```
-
-## Working With Agents
-
-Read `AGENTS.md`, then `TASKBOARD.md`, then the active capability spec before making changes. Visible changes require desktop and phone-sized browser proof in addition to tests and a production build.
+~~~bash
+npm test
+npm run build
+node tools/spec-workbench.mjs doctor
+node tools/spec-workbench.mjs next --json
+~~~
 
 ## Project Status
 
-The Genesis slice and complete ambient scene are implemented and live on GitHub Pages. See `TASKBOARD.md` for optional next enhancements and `specs/ambient-pond.md` for acceptance evidence.
+The ambient product is implemented and live. The generated Taskboard identifies
+one agent-safe verification ticket and keeps real-phone, PWA, behavior-variety,
+and subjective visual decisions owner-gated.
 
 ## License
 
-MIT. See `LICENSE`.
+MIT. See LICENSE.
