@@ -4,14 +4,14 @@
 > specs/S-006-verification-and-static-delivery/SPEC.md; never move between status folders.
 
 **Spec ID:** S-006
-**Status:** active
+**Status:** complete
 **Priority:** 1
 **Owner:** engineer-puffer
 **Updated:** 2026-07-17
 **Catalog description:** Keep deterministic logic tests, production builds, browser acceptance evidence, GitHub Pages deployment, and remote recovery reproducible.
 **Blockers:** none
-**Latest event:** TK-004 positive and blocked-asset paths now share one fail-closed image-readiness predicate and pass the full gate.
-**Next gate:** Auditor performs the final immutable-checkpoint review before TK-004 closes.
+**Latest event:** Spec completed and removed from the hot board.
+**Next gate:** none
 
 ## Outcome
 
@@ -37,9 +37,9 @@ small automated acceptance seam.
 - The live Pages site returns HTTP 200 and references the expected hashed assets.
 - Current local native verification passes on macOS with Node.js 26.3.0 and npm
   11.16.0; the workflow verifies Node.js 24.
-- The repository-owned Playwright checkpoint passes six headless browser tests,
-  fails closed on unloaded visitor images, and refreshes a compact
-  reduced-motion proof image; Auditor re-review is pending.
+- The audited repository-owned Playwright checkpoint passes six headless browser
+  tests, fails closed on unloaded visitor images, and refreshes a compact
+  reduced-motion proof image.
 
 ## Desired Behavior
 
@@ -82,7 +82,7 @@ small automated acceptance seam.
 | TK-001 | Establish deterministic scheduling/profile tests and a TypeScript production build gate | done | none | 4 Vitest tests pass; Vite build transforms 17 modules |
 | TK-002 | Establish desktop, phone, odd-window, reduced-motion, and interaction evidence seams | done | TK-001 | current docs images and 2026-07-14/15 browser proof |
 | TK-003 | Establish main-only GitHub Pages deployment, live verification, and Git remote recovery | done | TK-001 | workflow run 29539998708, live HTTP 200, origin/main 93c3d2c |
-| TK-004 | Add one repeatable browser acceptance runner for viewport overflow, controls, ripple, reduced motion, and forced visitor geometry | in-progress | none | original red missing script; final red complete-only shared guard; green 6-test Playwright run |
+| TK-004 | Add one repeatable browser acceptance runner for viewport overflow, controls, ripple, reduced motion, and forced visitor geometry | done | none | Audited checkpoint 9824e0c; Playwright 6/6 with blocked-asset fail-closed guard; targeted/full Vitest 4/4; Vite 17-module build; fresh clone ad51ced with npm ci, Chromium, Vitest, Playwright, build, and doctor; docs/browser-acceptance.jpg SHA-256 ded830fe91e988a3eb0ed401d5285772060458930a56e186bd75605c8eda71a5; render, doctor, and diff check green |
 
 ### Scoped Ticket: TK-004
 
@@ -112,7 +112,7 @@ and one compact screenshot or trace artifact inspectable in under a minute.
 - [x] Current desktop, phone, odd-window, reduced-motion, and interaction proof exists.
 - [x] Main-only Pages deployment succeeds and the live site returns HTTP 200.
 - [x] Remote recovery source and fresh-clone procedure are documented.
-- [ ] One repeatable browser acceptance command proves critical geometry and interactions.
+- [x] One repeatable browser acceptance command proves critical geometry and interactions.
 
 ## Testing Seams
 
@@ -157,17 +157,22 @@ the exact local-server and artifact behavior.
 | 2026-07-17 | TK-004 audit remediation | Required decoded duck and dog image data before stationary or geometry acceptance and added a blocked-asset regression | red: blocked images remained wrapper-visible with zero natural size; green: Playwright 6/6 repeated, targeted/full Vitest 4/4, 17-module build, render, doctor, diff check | Runbook browser contract and fresh-clone Chromium/browser commands updated | immutable remediation checkpoint re-audit |
 | 2026-07-17 | TK-004 remote recovery | Reproduced the updated verification procedure from pushed remediation checkpoint ad51ced | fresh clone; npm ci; Chromium install; Vitest 4/4; Playwright 6/6; 17-module build; doctor | Runbook procedure reproduced without correction | immutable remediation checkpoint re-audit |
 | 2026-07-17 | TK-004 final test remediation | Routed positive image acceptance and the blocked-asset regression through the same complete-and-natural-size predicate | red with complete-only predicate: expected false, received true; green: focused 1/1, Playwright 6/6, targeted/full Vitest 4/4, 17-module build, render, doctor, diff check | S-006 evidence updated; operational commands unchanged | final immutable checkpoint audit |
+| 2026-07-17 | TK-004 | Ticket closed | Audited checkpoint 9824e0c; Playwright 6/6 with blocked-asset fail-closed guard; targeted/full Vitest 4/4; Vite 17-module build; fresh clone ad51ced with npm ci, Chromium, Vitest, Playwright, build, and doctor; docs/browser-acceptance.jpg SHA-256 ded830fe91e988a3eb0ed401d5285772060458930a56e186bd75605c8eda71a5; render, doctor, and diff check green | README browser command and artifact; RUNBOOK browser and fresh-clone procedure; S-006 execution evidence; generated TASKBOARD projection | none in S-006; owner-gated follow-ups remain S-002 phone watch, S-003 behavior verdict, S-004 visual verdict, and S-005 PWA decision |
+| 2026-07-17 | spec | Spec completed | Acceptance gates satisfied | Documentation impact recorded above | none |
 
 ## Completion Result
 
-Pending TK-004 final Auditor review. Native, headless browser, visual,
-deployment, and recovery proof is green; the shared fail-closed acceptance
-predicate remains open until its immutable pushed SHA is reviewed.
+Complete. Deterministic scheduling, production build, headless browser
+acceptance, static deployment, live HTTP, proof-image, and remote-recovery gates
+are documented and green. Audited checkpoint 9824e0c closes the final S-006
+automation gap without changing product behavior or deploying the branch.
 
 ## Remaining Limitations Or Follow-Up Specs
 
 - Real-phone experiential proof remains S-002 owner work.
+- Optional behavior-variety direction remains S-003 owner work.
 - Subjective visual acceptance remains S-004 owner work.
+- Optional installable/offline PWA direction remains S-005 owner work.
 
 ## Supersession
 
