@@ -9,6 +9,16 @@ snails near grass and driftwood, intermittent ducks, hummingbird and dog visits,
 water ripples, opt-in sound, persistent day/night mode, reduced motion, and
 desktop/390x844 no-overflow composition.
 
+Founding prompt, preserved verbatim:
+
+> https://github.com/KaydenClark/LLM_Workbench/tree/integration
+>
+> Will you create a new project willing the Genesis protocol under the projects folder, set up a new remote repo and when you are done, commit and push to it.
+>
+> Goal: A responsive website that has a pond with a family of pea puffers inside of it, swiming and looking for snails in the grass and under drift wood. above the water are trees with birds fling around landing on the ground by the water and in the trees. every once in a while a green humming bird should come out and drink from some flowers, or some dogs should run out and drink from the pond. It should be really cute and fun to watch and have open on my phone.
+
+Hard constraints: responsive website; pond habitat; pea-puffer family; snails, grass, and driftwood; birds with flight and landing behavior; rare green hummingbird and dog visits; cute, watchable phone experience; new remote repository; commit and push when complete.
+
 Behavior windows were 25-45 seconds for hummingbirds, 55-95 seconds for dogs,
 65-100 seconds for ducks, with alternating rare visitors. The visual direction
 was premium hand-painted children's nature-book gouache using the concept at
