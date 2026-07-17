@@ -30,10 +30,20 @@ async function readImageReadiness(image: Locator) {
   }))
 }
 
+function hasLoadedImageData(
+  readiness: Awaited<ReturnType<typeof readImageReadiness>>,
+) {
+  return readiness.complete
+    && readiness.naturalWidth > 0
+    && readiness.naturalHeight > 0
+}
+
 async function expectLoadedImage(image: Locator) {
-  await expect.poll(async () => (await readImageReadiness(image)).complete).toBe(true)
-  await expect.poll(async () => (await readImageReadiness(image)).naturalWidth).toBeGreaterThan(0)
-  await expect.poll(async () => (await readImageReadiness(image)).naturalHeight).toBeGreaterThan(0)
+  await expect.poll(async () => hasLoadedImageData(await readImageReadiness(image))).toBe(true)
+  const readiness = await readImageReadiness(image)
+  expect(readiness.complete).toBe(true)
+  expect(readiness.naturalWidth).toBeGreaterThan(0)
+  expect(readiness.naturalHeight).toBeGreaterThan(0)
 }
 
 for (const [name, viewport] of Object.entries({
@@ -121,6 +131,7 @@ test('blocked visitor assets are not accepted as loaded images', async ({ page }
   expect(readiness.complete).toBe(true)
   expect(readiness.naturalWidth).toBe(0)
   expect(readiness.naturalHeight).toBe(0)
+  expect(hasLoadedImageData(readiness)).toBe(false)
 })
 
 test('forced dogs stay above the responsive shoreline at the odd-window seam', async ({ page }) => {
