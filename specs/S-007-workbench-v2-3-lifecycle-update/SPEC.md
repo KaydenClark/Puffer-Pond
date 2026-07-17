@@ -4,14 +4,14 @@
 > specs/S-007-workbench-v2-3-lifecycle-update/SPEC.md; never move between status folders.
 
 **Spec ID:** S-007
-**Status:** active
+**Status:** complete
 **Priority:** 0
 **Owner:** planner-puffer-sol-high
 **Updated:** 2026-07-17
 **Catalog description:** Reconcile Puffer Pond's generated controls with the complete v2.3 stable-spec lifecycle while preserving shipped behavior, proof, and remote history.
 **Blockers:** none
-**Latest event:** Controls, legacy queue/proof, coverage matrix, stable specs, and canonical lifecycle helpers were reconciled without product source changes.
-**Next gate:** Finish native/lifecycle verification and publish the remotely recoverable planning checkpoint.
+**Latest event:** Spec completed and removed from the hot board.
+**Next gate:** none
 
 ## Outcome
 
@@ -111,7 +111,7 @@ Pre-update baseline:
 |---|---|---|---|---|
 | TK-001 | Inventory and reconcile project controls while preserving the green product baseline and legacy proof | done | none | migration map; baseline 4 tests and 17-module build; legacy archives |
 | TK-002 | Create the complete Blueprint coverage matrix, stable specs/tickets, generated regions, Lexicon, Claude bridge, and exact lifecycle helpers | done | TK-001 | 23-item matrix, 7 stable specs, canonical helper checksums, no product-source diff |
-| TK-003 | Run render, doctor, native and evaluator verification, then commit/push and prove remote recovery | in-progress | TK-002 | pending final checkpoint proof |
+| TK-003 | Run render, doctor, native and evaluator verification, then commit/push and prove remote recovery | done | TK-002 | render and doctor green; native 4/4 tests and 17-module build; evaluator 73.2/113; canonical helpers exact; checkpoint 38fa5ba pushed and matched origin |
 
 ## Acceptance Criteria
 
@@ -120,9 +120,9 @@ Pre-update baseline:
 - [x] Stable specs cover every meaningful Blueprint/current-direction item.
 - [x] CLAUDE.md, LEXICON.md, HARNESS_FEEDBACK.md, and lifecycle helpers exist.
 - [x] No product source, production art, or deployment workflow was changed.
-- [ ] Render, doctor, and next are deterministic and truthful.
-- [ ] Native tests/build match or improve on baseline.
-- [ ] The checkpoint is committed, pushed, and verified against the remote ref.
+- [x] Render, doctor, and next are deterministic and truthful.
+- [x] Native tests/build match or improve on baseline.
+- [x] The checkpoint is committed, pushed, and verified against the remote ref.
 
 ## Testing Seams
 
@@ -160,10 +160,15 @@ Then run the evaluator and remote recovery procedure in RUNBOOK.md.
 |---|---|---|---|---|---|
 | 2026-07-17 | TK-001 | Verified clean main, remote recovery source, recent commits, live deployment, source/tests/manifests, and the green pre-update baseline | 4 Vitest tests; 17-module build; live HTTP 200; workflow 29539998708 success | migration inputs captured in S-007 | lifecycle and coverage conversion pending |
 | 2026-07-17 | TK-002 | Reconciled the complete v2.3 control model and ported the old queue/proof into stable capability owners | 23 matrix rows assigned; canonical helper checksums recorded; src/, public/assets/, and workflow untouched | controls, 7 specs, 2 cold archives, Lexicon, Claude bridge, and feedback log created | final verification and remote checkpoint pending |
+| 2026-07-17 | TK-003 | Ticket closed | render and doctor green; native 4/4 tests and 17-module build; evaluator 73.2/113; canonical helpers exact; checkpoint 38fa5ba pushed and matched origin | all project controls, stable specs, coverage matrix, legacy archives, and recovery commands reconciled; no product source changed | upstream duplicate catalog header logged; S-006/TK-004 remains the next agent-safe Engineer ticket |
+| 2026-07-17 | spec | Spec completed | Acceptance gates satisfied | Documentation impact recorded above | none |
 
 ## Completion Result
 
-Pending TK-003 verification and remote checkpoint.
+The project now has a complete, remotely checkpointed v2.3 stable-spec
+lifecycle with preserved shipped behavior and history. Seven stable specs own
+the full canon, the generated board exposes one safe Engineer ticket, and all
+phone-watch/product-direction work remains owner-gated.
 
 ## Remaining Limitations Or Follow-Up Specs
 

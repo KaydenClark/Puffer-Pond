@@ -96,7 +96,7 @@ history. Human-authored product prose stays outside the markers.
 | [S-004 - Illustrated Visual Quality](specs/S-004-illustrated-visual-quality/SPEC.md) | Preserve the approved warm gouache nature-book direction and prove coherent, readable composition across supported viewports. | blocked |
 | [S-005 - Installable Offline PWA Direction](specs/S-005-installable-offline-pwa/SPEC.md) | Decide whether Puffer Pond should remain a link-based static site or become an installable home-screen experience with offline reload. | blocked |
 | [S-006 - Verification And Static Delivery](specs/S-006-verification-and-static-delivery/SPEC.md) | Keep deterministic logic tests, production builds, browser acceptance evidence, GitHub Pages deployment, and remote recovery reproducible. | active |
-| [S-007 - Workbench v2.3 Lifecycle Update](specs/S-007-workbench-v2-3-lifecycle-update/SPEC.md) | Reconcile Puffer Pond's generated controls with the complete v2.3 stable-spec lifecycle while preserving shipped behavior, proof, and remote history. | active |
+| [S-007 - Workbench v2.3 Lifecycle Update](specs/S-007-workbench-v2-3-lifecycle-update/SPEC.md) | Reconcile Puffer Pond's generated controls with the complete v2.3 stable-spec lifecycle while preserving shipped behavior, proof, and remote history. | complete |
 <!-- spec-catalog:end -->
 
 ## Blueprint-To-Spec Coverage Matrix
