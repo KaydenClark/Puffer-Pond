@@ -1,4 +1,4 @@
-import { test, expect, type Page } from '@playwright/test'
+import { test, expect, type Locator, type Page } from '@playwright/test'
 
 const viewports = {
   desktop: { width: 1536, height: 1024 },
@@ -20,6 +20,20 @@ async function expectNoViewportOverflow(page: Page) {
   expect(geometry.documentHeight).toBeLessThanOrEqual(geometry.innerHeight)
   expect(geometry.bodyWidth).toBeLessThanOrEqual(geometry.innerWidth)
   expect(geometry.bodyHeight).toBeLessThanOrEqual(geometry.innerHeight)
+}
+
+async function readImageReadiness(image: Locator) {
+  return image.evaluate((element: HTMLImageElement) => ({
+    complete: element.complete,
+    naturalWidth: element.naturalWidth,
+    naturalHeight: element.naturalHeight,
+  }))
+}
+
+async function expectLoadedImage(image: Locator) {
+  await expect.poll(async () => (await readImageReadiness(image)).complete).toBe(true)
+  await expect.poll(async () => (await readImageReadiness(image)).naturalWidth).toBeGreaterThan(0)
+  await expect.poll(async () => (await readImageReadiness(image)).naturalHeight).toBeGreaterThan(0)
 }
 
 for (const [name, viewport] of Object.entries({
@@ -76,6 +90,11 @@ test('reduced motion keeps a visible stationary pond and duck composition', asyn
 
   const pond = page.locator('.pond')
   const ducks = page.locator('.duck-visit')
+  const duckImages = ducks.locator('.duck')
+  await expect(duckImages).toHaveCount(2)
+  for (let index = 0; index < 2; index += 1) {
+    await expectLoadedImage(duckImages.nth(index))
+  }
   await expect(pond).toBeVisible()
   await expect(ducks).toBeVisible()
   await expect(ducks).toHaveCSS('animation-name', 'none')
@@ -94,6 +113,16 @@ test('reduced motion keeps a visible stationary pond and duck composition', asyn
   })
 })
 
+test('blocked visitor assets are not accepted as loaded images', async ({ page }) => {
+  await page.route('**/assets/dogs.webp', (route) => route.abort())
+  await page.goto('/?visitor=dogs')
+
+  const readiness = await readImageReadiness(page.locator('.dogs'))
+  expect(readiness.complete).toBe(true)
+  expect(readiness.naturalWidth).toBe(0)
+  expect(readiness.naturalHeight).toBe(0)
+})
+
 test('forced dogs stay above the responsive shoreline at the odd-window seam', async ({ page }) => {
   await page.setViewportSize(viewports.oddWindow)
   await page.goto('/?visitor=dogs')
@@ -101,6 +130,7 @@ test('forced dogs stay above the responsive shoreline at the odd-window seam', a
 
   const pondBox = await page.locator('.pond').boundingBox()
   const dogs = page.locator('.dogs')
+  await expectLoadedImage(dogs)
   await expect(dogs).toBeVisible()
   const dogsBox = await dogs.boundingBox()
   expect(pondBox, 'pond should have measurable geometry').not.toBeNull()

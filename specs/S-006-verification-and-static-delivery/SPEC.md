@@ -10,8 +10,8 @@
 **Updated:** 2026-07-17
 **Catalog description:** Keep deterministic logic tests, production builds, browser acceptance evidence, GitHub Pages deployment, and remote recovery reproducible.
 **Blockers:** none
-**Latest event:** TK-004 headless browser checkpoint passes the full local gate and is ready for Auditor review.
-**Next gate:** Auditor reviews the immutable pushed checkpoint before TK-004 closes.
+**Latest event:** TK-004 audit remediation now fails closed on missing duck or dog image data and is ready for re-audit.
+**Next gate:** Auditor re-reviews the immutable pushed remediation checkpoint before TK-004 closes.
 
 ## Outcome
 
@@ -37,8 +37,9 @@ small automated acceptance seam.
 - The live Pages site returns HTTP 200 and references the expected hashed assets.
 - Current local native verification passes on macOS with Node.js 26.3.0 and npm
   11.16.0; the workflow verifies Node.js 24.
-- The repository-owned Playwright checkpoint passes five headless browser tests
-  and refreshes a compact reduced-motion proof image; Auditor review is pending.
+- The repository-owned Playwright checkpoint passes six headless browser tests,
+  fails closed on unloaded visitor images, and refreshes a compact
+  reduced-motion proof image; Auditor re-review is pending.
 
 ## Desired Behavior
 
@@ -81,7 +82,7 @@ small automated acceptance seam.
 | TK-001 | Establish deterministic scheduling/profile tests and a TypeScript production build gate | done | none | 4 Vitest tests pass; Vite build transforms 17 modules |
 | TK-002 | Establish desktop, phone, odd-window, reduced-motion, and interaction evidence seams | done | TK-001 | current docs images and 2026-07-14/15 browser proof |
 | TK-003 | Establish main-only GitHub Pages deployment, live verification, and Git remote recovery | done | TK-001 | workflow run 29539998708, live HTTP 200, origin/main 93c3d2c |
-| TK-004 | Add one repeatable browser acceptance runner for viewport overflow, controls, ripple, reduced motion, and forced visitor geometry | in-progress | none | red missing-script proof; green 5-test Playwright run and browser-acceptance.jpg |
+| TK-004 | Add one repeatable browser acceptance runner for viewport overflow, controls, ripple, reduced motion, and forced visitor geometry | in-progress | none | original red missing script; audit red blocked images with zero natural size; green 6-test Playwright run |
 
 ### Scoped Ticket: TK-004
 
@@ -118,7 +119,7 @@ and one compact screenshot or trace artifact inspectable in under a minute.
 - simulation.test.ts for pure scheduling/profile behavior.
 - TypeScript project build and Vite production bundling.
 - Repository-owned Playwright runner for DOM, geometry, interaction, and
-  reduced-motion behavior.
+  reduced-motion behavior, including fail-closed visitor image readiness.
 - GitHub Actions and live HTTP checks for deployed state.
 - Fresh clone of the pushed branch for recovery.
 
@@ -153,12 +154,13 @@ the exact local-server and artifact behavior.
 | 2026-07-15 | TK-001, TK-002, TK-003 | Duck regression, responsive proof, and latest deployment completed | 4 tests; build green; desktop/mobile/odd/reduced-motion pass; run 29539998708 success | legacy controls updated | automated browser runner absent |
 | 2026-07-17 | canon harvest | Reverified native and live proof and isolated browser automation as the smallest safe engineer ticket | npm test 4/4; npm run build 17 modules; live HTTP 200; origin/main and workflow SHA match | stable S-006 and current Runbook created | TK-004 ready |
 | 2026-07-17 | TK-004 | Added repository-owned headless browser acceptance and compact reduced-motion proof artifact; checkpoint remains open for Auditor | red: npm run test:browser missing script; green: targeted 4/4, Playwright 5/5, full 4/4, 17-module build, render, doctor, diff check | Runbook and README add setup, exact command, coverage, and artifact | immutable checkpoint review by Auditor |
+| 2026-07-17 | TK-004 audit remediation | Required decoded duck and dog image data before stationary or geometry acceptance and added a blocked-asset regression | red: blocked images remained wrapper-visible with zero natural size; green: Playwright 6/6 repeated, targeted/full Vitest 4/4, 17-module build, render, doctor, diff check | Runbook browser contract and fresh-clone Chromium/browser commands updated | immutable remediation checkpoint re-audit |
 
 ## Completion Result
 
-Pending TK-004 Auditor review. Native, headless browser, visual, deployment, and
-recovery proof is green; the automated acceptance checkpoint remains open until
-its immutable pushed SHA is reviewed.
+Pending TK-004 Auditor re-review. Native, headless browser, visual, deployment,
+and recovery proof is green; the fail-closed automated acceptance remediation
+remains open until its immutable pushed SHA is reviewed.
 
 ## Remaining Limitations Or Follow-Up Specs
 

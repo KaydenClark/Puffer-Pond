@@ -74,8 +74,10 @@ npm run test:browser
 The runner starts a local Vite server on 127.0.0.1:4173 and checks desktop and
 phone overflow, phone control state and touch geometry, valid and rejected
 ripple input, reduced-motion pond/duck composition, and forced dog shoreline
-geometry at 1100x460. It writes the compact reduced-motion proof artifact to
-docs/browser-acceptance.jpg.
+geometry at 1100x460. Duck and dog acceptance requires each image to report
+complete with positive natural width and height; a blocked-asset regression
+proves missing visitor art cannot pass geometry checks. The runner writes the
+compact reduced-motion proof artifact to docs/browser-acceptance.jpg.
 
 Full native gate:
 
@@ -170,7 +172,9 @@ git clone https://github.com/KaydenClark/Puffer-Pond.git "$puffer_verify_dir/Puf
 git -C "$puffer_verify_dir/Puffer-Pond" checkout codex/puffer-pond-canon-spec-coverage
 cd "$puffer_verify_dir/Puffer-Pond"
 npm ci
+npx playwright install chromium
 npm test
+npm run test:browser
 npm run build
 node tools/spec-workbench.mjs doctor
 ~~~
