@@ -2,9 +2,8 @@
 
 > Generated from LLM Workbench v3.2.0.
 
-**Status:** `S-001 / TK-001` implementation is in progress. Project-local
-doctor and node command checks are run as part of this ticket, with browser proof
-still pending.
+**Status:** `S-001 / TK-001` is locally complete. Project-local Node tests,
+static build, doctor, and required local Chrome browser proof have passed.
 
 ## Ordinary Entry
 
@@ -18,12 +17,13 @@ after the fresh room and its runtime tools are available.
 - A modern local browser for independent desktop and phone checks.
 
 The bounded slice has no package-manager dependencies, environment variables,
-credentials, remote service, database, or network dependency.
+credentials, remote service, database, or network dependency. Browser proof may
+use host verification tools outside the project; those tools are not project
+runtime dependencies.
 
-## Planned Local Commands
+## Local Commands
 
-After the fresh project contains its source, tests, build tool, manifest, and
-installed Workbench runtime, run:
+Run:
 
 ```bash
 node --test tests/*.test.mjs
@@ -31,23 +31,29 @@ node tools/build.mjs
 node workbench/tools/spec-workbench.mjs doctor
 ```
 
-Expected result: the tests pass, the static build produces the project output,
-and doctor reports no blocker for the actual `S-001` packet.
+Observed result on 2026-09-10: all 7 tests passed, the static build produced
+`dist`, and doctor reported no blocker for the actual `S-001` packet.
 
-## Planned Browser Proof
+## Browser Proof
 
 Use an independent local browser at `1536x1024` and `390x844`. Capture a
 screenshot at each size and check that the document has no horizontal or
-vertical overflow, puffers/snails remain below the visible waterline, and
-reduced motion pauses decorative animation. These checks are required before
-claiming responsive or visual acceptance; none has run for this draft.
+vertical overflow, five puffers plus snails remain below the visible waterline,
+images load, no browser errors occur, and reduced motion pauses or removes
+decorative animation.
+
+Observed result on 2026-09-10: local Chrome checks passed at both required
+viewports, with five puffer profiles and two snail profiles below the waterline.
+Screenshots and machine-readable proof were saved under ignored
+`workbench/sessions/recovery/browser-proof/`.
 
 ## Test Coverage
 
-`tests/scene.test.mjs` will cover five unique puffer profiles, every selected
-underwater position at or below the scene-model waterline, and the reduced-motion
-state. Browser inspection covers CSS layout and rendering, which pure Node tests
-cannot establish.
+`tests/scene.test.mjs` covers five unique puffer profiles plus snails, every
+selected underwater position at or below the scene-model waterline, asset
+presence, page wiring, reduced-motion CSS, and inline favicon declaration.
+Browser inspection covers CSS layout and rendering, which pure Node tests cannot
+establish.
 
 ## Asset Provenance
 
@@ -66,6 +72,8 @@ manifest exists, use its declared integration branch and the project Git rules.
 
 ## Review
 
-Before integration, a separate-context reviewer must inspect the immutable
-candidate, S-001 source lineage, the destination-only Blueprint, the absence of
-inherited historical tasks/runtime claims, and actual test/build/browser proof.
+Before integration or publication, a separate-context reviewer should inspect
+the immutable candidate, S-001 source lineage, the destination-only Blueprint,
+the absence of inherited historical tasks/runtime claims, and actual
+test/build/browser proof. This run did not push, merge, deploy, or remote-publish
+the site.

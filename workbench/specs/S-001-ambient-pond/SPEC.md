@@ -3,15 +3,15 @@
 > Generated from LLM Workbench v3.2.0.
 
 **Spec ID:** S-001
-**Status:** active
+**Status:** complete
 **Priority:** 2
-**Owner:** unassigned
+**Owner:** codex
 **Stance:** Builder
 **Updated:** 2026-09-10
 **Catalog description:** Opening the static site reveals a calm illustrated pond that fits the viewport and keeps five puffers and snails below its waterline.
 **Blockers:** none
-**Latest event:** Genesis derived this scoped capability from locked recorded decisions.
-**Next gate:** Claim TK-001.
+**Latest event:** Spec completed and removed from the hot board.
+**Next gate:** none
 
 ## Outcome
 
@@ -68,14 +68,14 @@ The complete derivation receipt is [DERIVATION.json](../../docs/intake/DERIVATIO
 
 | Ticket | Slice | Status | Blockers | Proof |
 |---|---|---|---|---|
-| TK-001 | Render the responsive pond with safe motion and verify its local tests, build and browser behavior. | ready | none | pending |
+| TK-001 | Render the responsive pond with safe motion and verify its local tests, build and browser behavior. | done | none | node tests/build/browser proof passed: 7 Node tests, static build ok, desktop1536x1024 and phone390x844 Chrome checks passed with 5 puffers + 2 snails below waterline, loaded images, no overflow, no browser errors, reduced-motion animation removed |
 
 ## Acceptance Criteria
 
-- [ ] Five distinct puffers and snails remain below the waterline.
-- [ ] Reduced-motion preference pauses animal animation.
-- [ ] Desktop1536x1024 and phone390x844 browser checks show no document overflow.
-- [ ] Node tests and static production build pass using only project-local files.
+- [x] Five distinct puffers and snails remain below the waterline.
+- [x] Reduced-motion preference pauses animal animation.
+- [x] Desktop1536x1024 and phone390x844 browser checks show no document overflow.
+- [x] Node tests and static production build pass using only project-local files.
 
 ## Testing Seams
 
@@ -83,21 +83,52 @@ The complete derivation receipt is [DERIVATION.json](../../docs/intake/DERIVATIO
 
 ## Verification Procedure
 
-Run the ticket's named checks, then render and doctor the room.
+Run the ticket's named checks, then render and doctor the room. Browser proof
+uses local static serving plus host Chrome/Playwright; those browser tools are
+not project runtime dependencies.
 
 ## Documentation Impact
 
-Update the named capability owners when the ticket lands.
+README and RUNBOOK now describe the observed local result instead of planned
+verification. Blueprint remains destination-only.
+
+## Observed Verification
+
+Commands and checks actually run for the completed TK-001 proof:
+
+- `node workbench/tools/notepads.mjs read --note workbench/sessions/notepads/work/puffer-proof.json --view current` returned revision 4 with browser proof pending.
+- `node workbench/tools/notepads.mjs validate --note workbench/sessions/notepads/work/puffer-proof.json` returned valid at revision 4.
+- `node workbench/tools/spec-workbench.mjs doctor` passed before implementation continuation.
+- `node workbench/tools/spec-workbench.mjs next --json` selected S-001 / TK-001.
+- `node --test tests/*.test.mjs` passed 6 tests before correction, but that did not prove the founding prompt by species.
+- Added species-count regression; `node --test tests/*.test.mjs` failed as expected with `3 !== 5` puffers.
+- Updated `scene-config.mjs` to five puffer profiles plus two snail profiles; `node --test tests/*.test.mjs` then passed 6 tests.
+- `node tools/build.mjs` passed.
+- First browser proof command failed before running because the ad-hoc Node script mixed `require` with top-level `await`; no browser claim is based on that failed command.
+- Browser proof then detected a desktop console 404 for `/favicon.ico` while layout checks passed.
+- Added inline-favicon regression; `node --test tests/*.test.mjs` failed as expected because `index.html` lacked an inline icon.
+- Added a data-URL icon in `index.html`; `node --test tests/*.test.mjs` passed 7 tests and `node tools/build.mjs` passed.
+- Local browser proof against `http://127.0.0.1:4173/` with host Playwright at `/Users/kayden/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright` and installed Chrome passed desktop1536x1024 and phone390x844: no document overflow, five puffers, two snails, all images loaded, all animals below the visible waterline and in viewport, no console/page/request/http errors, and reduced-motion media removed CSS animations.
+- Screenshots and machine-readable proof were saved under ignored `workbench/sessions/recovery/browser-proof/` and visually inspected.
+
+Limitations: this proves local static behavior in installed Chrome on this host
+only. It does not prove deployment, remote publication, push/merge state,
+other browsers, other devices, or cross-device reliability.
 
 ## Append-Only Evidence And Execution Log
 
 | Date | Ticket | Event | Verification | Docs | Remaining gap |
 |---|---|---|---|---|---|
 | 2026-09-10 | genesis | Derived from Q1, Q2 and source-linked evidence | Generated-room layout, render and doctor passed before publication | Spec and derivation receipt created | Remote recovery omitted: this derivation creates local main and integration branches only; semantic review and implementation remain |
+| 2026-09-10 | TK-001 | Ticket closed | node tests/build/browser proof passed: 7 Node tests, static build ok, desktop1536x1024 and phone390x844 Chrome checks passed with 5 puffers + 2 snails below waterline, loaded images, no overflow, no browser errors, reduced-motion animation removed | Updated S-001 evidence, README/RUNBOOK observed-state docs, and ignored browser-proof artifacts | Manager review/publication only; no push, merge, deployment, remote publication, or cross-device reliability claim |
+| 2026-09-10 | spec | Spec completed | Acceptance gates satisfied | Documentation impact recorded above | none |
 
 ## Completion Result
 
-Pending.
+TK-001 is complete locally. Opening the static site renders the bounded ambient
+pond with five puffer profiles and two snail profiles below the waterline,
+reduced-motion users receive a visible still scene without animal animations,
+and required Node/build/browser checks passed with the limitations above.
 
 ## Supersession
 

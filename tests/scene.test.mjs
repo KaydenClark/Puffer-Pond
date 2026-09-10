@@ -12,11 +12,17 @@ const indexPath = path.join(root, 'index.html');
 const scenePath = path.join(root, 'scene.js');
 const imageAssets = Object.values(SCENE_CONFIG.asset);
 
-test('scene has five visually distinct animals', () => {
+test('scene has five distinct puffer profiles plus snails', () => {
   const { animals } = SCENE_CONFIG;
-  assert.equal(animals.length, 5);
-  assert.equal(new Set(animals.map((animal) => animal.id)).size, 5);
-  assert.equal(new Set(animals.map((animal) => animal.profile)).size, 5);
+  const puffers = animals.filter((animal) => animal.type === 'puffer');
+  const snails = animals.filter((animal) => animal.type === 'snail');
+
+  assert.equal(puffers.length, 5);
+  assert.equal(snails.length >= 2, true);
+  assert.equal(new Set(puffers.map((animal) => animal.id)).size, 5);
+  assert.equal(new Set(puffers.map((animal) => animal.profile)).size, 5);
+  assert.equal(new Set(snails.map((animal) => animal.id)).size, snails.length);
+  assert.equal(new Set(snails.map((animal) => animal.profile)).size, snails.length);
 });
 
 test('all scene animals stay at or below waterline', () => {
@@ -56,4 +62,9 @@ test('index and model are wired together', async () => {
   assert.ok(indexMarkup.includes('scene.js'));
   assert.ok(indexMarkup.includes('pond-environment.png'));
   assert.ok(sceneSource.includes('SCENE_CONFIG'));
+});
+
+test('index declares an inline icon so browsers do not request a missing favicon', async () => {
+  const indexMarkup = await fs.readFile(indexPath, 'utf8');
+  assert.match(indexMarkup, /<link\s+rel="icon"\s+href="data:image\/svg\+xml,/);
 });
