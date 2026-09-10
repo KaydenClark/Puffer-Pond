@@ -1,0 +1,139 @@
+:root {
+  --waterline: 58%;
+  --text: rgba(11, 35, 45, 0.8);
+  --ground-shadow: rgba(11, 35, 45, 0.16);
+  --ink: #f7fbfd;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  overflow: hidden;
+  background: #0e2f42;
+  color: var(--text);
+  font-family: "Segoe UI", Georgia, "Times New Roman", serif;
+}
+
+.pond-scene {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.pond-scene__background {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 55% 35%;
+  display: block;
+}
+
+.pond-scene__waterline {
+  position: absolute;
+  top: var(--waterline);
+  left: 0;
+  right: 0;
+  height: 0.5%;
+  background: linear-gradient(to right, transparent 0, rgba(255, 255, 255, 0.14) 50%, transparent 100%);
+  opacity: 0;
+}
+
+.pond-scene__underwater {
+  position: absolute;
+  inset: var(--waterline) 0 0 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.pond-animal {
+  position: absolute;
+  object-fit: contain;
+  transform-origin: center center;
+  animation: pond-float var(--duration) ease-in-out infinite alternate;
+  width: var(--size);
+  filter:
+    drop-shadow(0 0.35rem 0.35rem var(--ground-shadow));
+  top: var(--depth);
+  left: var(--left);
+}
+
+.pond-animal--puffer {
+  animation-name: pond-float;
+  animation-duration: var(--duration);
+}
+
+.pond-animal--snail {
+  animation-name: pond-crawl;
+  animation-duration: var(--duration);
+}
+
+.pond-animal--flipped {
+  transform: scaleX(-1);
+}
+
+.pond-animal--puffer,
+.pond-animal--snail {
+  animation-delay: var(--delay);
+}
+
+.pond-scene__credit {
+  position: absolute;
+  left: 0.75rem;
+  right: 0.75rem;
+  bottom: 0.75rem;
+  margin: 0;
+  color: var(--ink);
+  font-size: 0.72rem;
+  line-height: 1.25;
+  text-wrap: balance;
+  text-shadow: 0 0.1rem 0.45rem rgba(4, 17, 28, 0.5);
+}
+
+.pond-scene__credit a {
+  color: var(--ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pond-animal {
+    animation: none;
+    transform: none;
+  }
+}
+
+@keyframes pond-float {
+  0% {
+    transform: translateX(calc(-1 * var(--sway-x))) translateY(calc(-1 * var(--sway-y))) rotate(calc(-1 * var(--spin)));
+  }
+  50% {
+    transform: translateX(calc(0.5 * var(--sway-x))) translateY(calc(-0.35 * var(--sway-y))) rotate(0deg);
+  }
+  100% {
+    transform: translateX(var(--sway-x)) translateY(var(--sway-y)) rotate(var(--spin));
+  }
+}
+
+@keyframes pond-crawl {
+  0% {
+    transform: translateX(calc(-1 * var(--sway-x))) rotate(0.4deg);
+  }
+  50% {
+    transform: translateX(calc(0.4 * var(--sway-x))) rotate(-0.5deg);
+  }
+  100% {
+    transform: translateX(var(--sway-x)) rotate(0.6deg);
+  }
+}

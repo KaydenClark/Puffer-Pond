@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Puffer Pond</title>
+    <link rel="stylesheet" href="scene.css" />
+  </head>
+  <body>
+    <main class="pond-scene" id="pond-scene">
+      <img
+        class="pond-scene__background"
+        src="public/assets/pond-environment.png"
+        alt="Calm watercolor pond scene with plants and drifting branches"
+      />
+      <div
+        class="pond-scene__waterline"
+        aria-hidden="true"
+      ></div>
+      <section
+        class="pond-scene__underwater"
+        id="underwater"
+        aria-label="Underwater pond"
+      ></section>
+      <p class="pond-scene__credit">
+        Pond, puffer, and snail imagery from Kayden Clark under MIT License.
+        See
+        <a href="workbench/wiki/MEMORY.md">workbench/wiki/MEMORY.md</a>.
+      </p>
+    </main>
+    <script type="module" src="scene.js"></script>
+  </body>
+</html>

@@ -2,14 +2,15 @@
 
 > Generated from LLM Workbench v3.2.0.
 
-**Status:** Draft for the S-00E fresh-project proof. No command below has run
-for Puffer Pond yet.
+**Status:** `S-001 / TK-001` implementation is in progress. Project-local
+doctor and node command checks are run as part of this ticket, with browser proof
+still pending.
 
 ## Ordinary Entry
 
 Follow `AGENTS.md` -> this file -> `LEXICON.md`, then load the assigned Spec.
-Run the project-local doctor and `next --json` only after Genesis has created
-the fresh room and its runtime tools.
+Run the project-local doctor and `next --json` (`node workbench/tools/spec-workbench.mjs next --json`)
+after the fresh room and its runtime tools are available.
 
 ## Prerequisites
 
@@ -30,8 +31,8 @@ node tools/build.mjs
 node workbench/tools/spec-workbench.mjs doctor
 ```
 
-Expected result, not yet verified: the tests pass, the static build produces
-the project output, and doctor reports no blocker for the actual `S-001` packet.
+Expected result: the tests pass, the static build produces the project output,
+and doctor reports no blocker for the actual `S-001` packet.
 
 ## Planned Browser Proof
 
