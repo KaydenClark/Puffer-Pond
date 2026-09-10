@@ -122,6 +122,7 @@ other browsers, other devices, or cross-device reliability.
 | 2026-09-10 | genesis | Derived from Q1, Q2 and source-linked evidence | Generated-room layout, render and doctor passed before publication | Spec and derivation receipt created | Remote recovery omitted: this derivation creates local main and integration branches only; semantic review and implementation remain |
 | 2026-09-10 | TK-001 | Ticket closed | node tests/build/browser proof passed: 7 Node tests, static build ok, desktop1536x1024 and phone390x844 Chrome checks passed with 5 puffers + 2 snails below waterline, loaded images, no overflow, no browser errors, reduced-motion animation removed | Updated S-001 evidence, README/RUNBOOK observed-state docs, and ignored browser-proof artifacts | Manager review/publication only; no push, merge, deployment, remote publication, or cross-device reliability claim |
 | 2026-09-10 | spec | Spec completed | Acceptance gates satisfied | Documentation impact recorded above | none |
+| 2026-09-10 | TK-001 | Manager review corrected the artwork credit to the bundled MIT license and ignored reproducible dist output | Workbench939c551 production-check.cjs reproduced credit404, then passed desktop/phone checks with license200, five puffers/two snails, no overflow/errors and reduced-motion pause; Node7/7 and build pass | Filled remaining draft wording in project controls; original evidence retained | Separate-context review and recovery publication remain; no deployment claim |
 
 ## Completion Result
 

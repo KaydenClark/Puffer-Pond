@@ -8,8 +8,8 @@ snails below a declared waterline, with gentle motion that pauses for
 reduced-motion users.
 
 This project directory includes source and verification records for the fresh
-proof implementation, plus the room-brain routing and local work note. It has
-not been pushed, merged, deployed, or remote-published by this proof.
+proof implementation and room-brain routing. Delivery evidence is owned by
+S-001. The site is a local static proof; deployment is outside this slice.
 
 ## Local Scope
 

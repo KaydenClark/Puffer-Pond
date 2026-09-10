@@ -66,9 +66,9 @@ specs, remote configuration, screenshots, or unselected assets.
 ## Git And Recovery
 
 The owner named the public Puffer-Pond test repository. New proof recovery uses
-a separate task branch there; main and its deployment remain unchanged. This draft makes
-no remote, branch, commit, push, deployment, or browser-proof claim. Once the
-manifest exists, use its declared integration branch and the project Git rules.
+a separate task branch there. Use the manifest-declared integration branch and
+the project Git rules; verify the remote and candidate before publication.
+The bounded proof does not authorize a deployment or replacement of main.
 
 ## Review
 

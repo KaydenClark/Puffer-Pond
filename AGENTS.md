@@ -2,9 +2,9 @@
 
 > Generated from LLM Workbench v3.2.0.
 
-This draft governs the proposed fresh Puffer Pond project once Genesis forms it.
-It does not describe the historical Puffer Pond checkout and does not prove that
-the fresh project has been created or verified.
+This contract governs the independent Puffer Pond proof project. Historical
+Puffer Pond material remains source evidence; current acceptance and verification
+belong to the assigned project Spec.
 
 ## Ordinary Entry
 
@@ -59,7 +59,7 @@ or network requests without a current owner decision.
 ## Work Selection And Engineering
 
 Run the project-local doctor and `next --json`, then load only the assigned
-spec. The first proposed capability is `S-001 - Ambient Pond` at
+spec. The first capability is `S-001 - Ambient Pond` at
 `workbench/specs/S-001-ambient-pond/SPEC.md`; its first slice is `TK-001`.
 The historical project's tasks and runtime are not inherited.
 

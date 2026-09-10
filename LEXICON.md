@@ -24,8 +24,8 @@
 | Waterline | The scene-model boundary above which the first slice may not place puffers or snails. |
 | Reduced motion | A preference that leaves the pond visible while pausing its decorative motion. |
 | Fresh formation | A new project initialized from the Template with its own identity, controls, spec, evidence, and Git recovery; it is not Adoption of the historical project. |
-| S-001 | The proposed stable Ambient Pond capability at `workbench/specs/S-001-ambient-pond/SPEC.md`. |
-| TK-001 | The proposed first vertical slice: a bounded static pond viewport with deterministic scene rules and independent browser proof. |
+| S-001 | The stable Ambient Pond capability at `workbench/specs/S-001-ambient-pond/SPEC.md`. |
+| TK-001 | The first vertical slice: a bounded static pond viewport with deterministic scene rules and independent browser proof. |
 
 ## Evidence Boundary
 
