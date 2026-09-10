@@ -108,7 +108,7 @@ Commands and checks actually run for the completed TK-001 proof:
 - Browser proof then detected a desktop console 404 for `/favicon.ico` while layout checks passed.
 - Added inline-favicon regression; `node --test tests/*.test.mjs` failed as expected because `index.html` lacked an inline icon.
 - Added a data-URL icon in `index.html`; `node --test tests/*.test.mjs` passed 7 tests and `node tools/build.mjs` passed.
-- Local browser proof against `http://127.0.0.1:4173/` with host Playwright at `/Users/kayden/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright` and installed Chrome passed desktop1536x1024 and phone390x844: no document overflow, five puffers, two snails, all images loaded, all animals below the visible waterline and in viewport, no console/page/request/http errors, and reduced-motion media removed CSS animations.
+- Local browser proof against `http://127.0.0.1:4173/` with the host-provided Playwright package (absolute installation path omitted) and installed Chrome passed desktop1536x1024 and phone390x844: no document overflow, five puffers, two snails, all images loaded, all animals below the visible waterline and in viewport, no console/page/request/http errors, and reduced-motion media removed CSS animations.
 - Screenshots and machine-readable proof were saved under ignored `workbench/sessions/recovery/browser-proof/` and visually inspected.
 
 Limitations: this proves local static behavior in installed Chrome on this host
@@ -123,6 +123,7 @@ other browsers, other devices, or cross-device reliability.
 | 2026-09-10 | TK-001 | Ticket closed | node tests/build/browser proof passed: 7 Node tests, static build ok, desktop1536x1024 and phone390x844 Chrome checks passed with 5 puffers + 2 snails below waterline, loaded images, no overflow, no browser errors, reduced-motion animation removed | Updated S-001 evidence, README/RUNBOOK observed-state docs, and ignored browser-proof artifacts | Manager review/publication only; no push, merge, deployment, remote publication, or cross-device reliability claim |
 | 2026-09-10 | spec | Spec completed | Acceptance gates satisfied | Documentation impact recorded above | none |
 | 2026-09-10 | TK-001 | Manager review corrected the artwork credit to the bundled MIT license and ignored reproducible dist output | Workbench939c551 production-check.cjs reproduced credit404, then passed desktop/phone checks with license200, five puffers/two snails, no overflow/errors and reduced-motion pause; Node7/7 and build pass | Filled remaining draft wording in project controls; original evidence retained | Separate-context review and recovery publication remain; no deployment claim |
+| 2026-09-10 | TK-001 | Review correction removes an unnecessary host installation path from the browser observation | Shared privacy scan is clean; original test and browser outcomes are unchanged | Proof now names the browser tool without publishing its host location | No deployment or broader reliability claim; fresh review precedes the documentation update push |
 
 ## Completion Result
 
