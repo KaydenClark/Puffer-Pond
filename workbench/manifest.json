@@ -1,0 +1,119 @@
+{
+  "schemaVersion": 2,
+  "workbenchVersion": "v3.2.0",
+  "workbenchId": "WB-0eSjLULGezLPlWk6RzkPpe",
+  "provenance": {
+    "lifecycle": "genesis",
+    "source": {
+      "repository": "https://github.com/KaydenClark/LLM_Workbench.git",
+      "release": "v3.2.0",
+      "commit": "017467502ab80556c7a59a2cc6ef275d12257ccb"
+    },
+    "template": {
+      "repository": "https://github.com/KaydenClark/Example_Workbench.git",
+      "release": "v3.2.0",
+      "commit": "40100037562f1327f17afcba4cd6ff784321e35e",
+      "workbenchId": "WB-1RX8E0KgeMDxKV6Z3l9AEC"
+    },
+    "derivedFrom": {
+      "receipt": {
+        "file": "workbench/docs/intake/DERIVATION.json",
+        "sha256": "87f3be1bb0e983d8a6742a03837e5cb95a64026a7947632fa55094afe68fafd8"
+      },
+      "sourceProject": {
+        "repository": "https://github.com/KaydenClark/Example_Workbench.git",
+        "commit": "55a3fba9816438fbbc78bbd02c2d8da26fb71c63",
+        "observation": "local-checkout-only"
+      },
+      "intake": {
+        "id": "puffer-pond-blueprint",
+        "revision": 4,
+        "evidenceSchema": "project-evidence-1"
+      },
+      "questions": [
+        {
+          "id": "Q1",
+          "decisionEntry": "decision-001",
+          "evidence": [
+            "E1",
+            "E4"
+          ]
+        },
+        {
+          "id": "Q2",
+          "decisionEntry": "decision-002",
+          "evidence": [
+            "E1",
+            "E2",
+            "E3"
+          ]
+        }
+      ],
+      "activeAdrs": [
+        {
+          "id": "ADR-0002",
+          "sha256": "dc7c707b9eb6b0691705c571045394a3677f29a90edc365ec8a5a83846e3ee5e"
+        }
+      ]
+    }
+  },
+  "git": {
+    "defaultBranch": "main",
+    "integrationBranch": "integration"
+  },
+  "lanes": {
+    "docs": "workbench/docs",
+    "specs": "workbench/specs",
+    "wiki": "workbench/wiki",
+    "sessions": "workbench/sessions",
+    "feedback": "workbench/feedback",
+    "tools": "workbench/tools"
+  },
+  "collections": {
+    "adr": "workbench/docs/adr",
+    "design-concepts": "workbench/wiki/design-concepts",
+    "guidebooks": "workbench/wiki/guidebooks",
+    "archive": "workbench/wiki/archive",
+    "grilling": "workbench/sessions/grilling",
+    "handoffs": "workbench/sessions/handoffs",
+    "checkpoints": "workbench/sessions/checkpoints",
+    "notepads": "workbench/sessions/notepads",
+    "notepad-templates": "workbench/sessions/notepads/templates",
+    "recovery": "workbench/sessions/recovery"
+  },
+  "wiki": {
+    "profile": "project"
+  },
+  "skillPolicy": {
+    "required": [
+      "adoption",
+      "checkpoint",
+      "code-review",
+      "genesis",
+      "grilling",
+      "implement",
+      "make-it-so",
+      "to-docs",
+      "to-spec",
+      "to-tickets",
+      "tracer-bullet",
+      "update-harness",
+      "carry",
+      "notepad",
+      "save",
+      "promote",
+      "handoff",
+      "builder",
+      "auditor",
+      "reviewer",
+      "reconciler"
+    ],
+    "discovery": [
+      ".agents/skills",
+      ".claude/skills"
+    ],
+    "normalSetup": "presence-only",
+    "updates": "explicit-only"
+  },
+  "name": "Puffer Pond"
+}
